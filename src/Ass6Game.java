@@ -1,3 +1,4 @@
+import animation.AnimationRunner;
 import biuoop.GUI;
 import settings.Game;
 
@@ -8,7 +9,7 @@ import settings.Game;
  * @id: 207481177
  * @since: 02/06/2020
  */
-public class Ass5Game {
+public class Ass6Game {
     /**
      * this method is the Main method that initializes and runs the whole game!
      *
@@ -16,6 +17,7 @@ public class Ass5Game {
      */
     public static void main(String[] args) {
         GUI gui = new GUI("Arkanoid", 800, 600);
+        AnimationRunner animationRunner = new AnimationRunner(gui, 60);
         Game game = new Game();
         game.initialize();
         game.run();

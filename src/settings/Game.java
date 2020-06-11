@@ -1,7 +1,10 @@
 package settings;
 
+import animation.Animation;
+import animation.AnimationRunner;
 import biuoop.DrawSurface;
 import biuoop.GUI;
+import biuoop.KeyboardSensor;
 import biuoop.Sleeper;
 import geometry.Point;
 import geometry.Rectangle;
@@ -25,7 +28,7 @@ import java.util.Random;
  * @id: 207481177
  * @since: 03/02/2020
  */
-public class Game {
+public class Game implements Animation {
     private static int screenHeight = 600;
     private static int screenWidth = 800;
     private GUI gui;
@@ -35,6 +38,10 @@ public class Game {
 
     private Counter blocksCounter;
     private Counter ballsCounter;
+
+    private AnimationRunner runner;
+    private boolean running;
+    private KeyboardSensor keyboard;
 
     /**
      * this method constructs new game object.
@@ -47,6 +54,33 @@ public class Game {
         this.score = new Counter(0);
         this.blocksCounter = new Counter();
         this.ballsCounter = new Counter(3);
+        this.keyboard = keyboard;
+    }
+
+    /**
+     * this method constructs a gameLevel object.
+     *
+     * //@param level the levelInfornation object for the current level.
+     *
+     * @param keyboard a keyboard sensor connected to a gui object.
+     * @param animationRunner an animation runner connected to a gui object.
+     * @param score a score counter holding the current score.
+     * //@param lives a lives counter holding the current lives.
+     * //@param horizontalBound the available width.
+     * //@param verticalBound the available height.
+     */
+
+    //LevelInformation level,
+    public void GameLevel(KeyboardSensor keyboard, AnimationRunner animationRunner, Counter score) {
+        this.environment = new GameEnvironment();
+        this.sprites = new SpriteCollection();
+        //this.sprites.addSprite(level.getBackground());
+        this.runner = animationRunner;
+        //this.remainingBlocks = new Counter(level.numberOfBlocksToRemove());
+        this.ballsCounter = new Counter(0);
+        this.keyboard = keyboard;
+        this.score = score;
+        this.running = true;
     }
 
     /**
@@ -140,7 +174,7 @@ public class Game {
      * this method runs the game animation in a loop.
      */
     public void run() {
-        int framesPerSecond = 44;
+        int framesPerSecond = 60;
         int millisecondsPerFrame = 1000 / framesPerSecond;
         Sleeper sleeper = new Sleeper();
         while (!this.shouldStop()) { //// shouldStop() is in charge of stopping condition.
@@ -204,5 +238,38 @@ public class Game {
      */
     public void removeSprite(Sprite s) {
         this.sprites.removeSprite(s);
+    }
+
+    /**
+     * this method draws the current state of the animation object to the screen.
+     *
+     * @param d is the DrawSurface.
+     */
+    @Override
+    public void doOneFrame(DrawSurface d) {
+        // the logic from the previous run method goes here.
+        // the `return` or `break` statements should be replaced with
+        // this.running = false;//TODO
+        this.sprites.drawAllOn(d);
+        this.sprites.notifyAllTimePassed();
+        if (this.keyboard.isPressed("p")) {
+            this.runner.run(new PauseScreen(this.keyboard));
+        }
+        if (this.blocksCounter.getValue() == 0 || this.ballsCounter.getValue() == 0) {
+            this.running = false;
+        }
+        if (this.keyboard.isPressed("p")) {
+            this.runner.run(new PauseScreen(this.keyboard));
+        }
+    }
+
+    /**
+     * this method in charge of the game-specific logic and stopping conditions are handled
+     *
+     * @return true when the current game frame should stop. false, when shouldn't stop.
+     */
+    @Override
+    public boolean shouldStop() {
+        return !this.running;
     }
 }
