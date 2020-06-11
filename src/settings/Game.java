@@ -13,10 +13,10 @@ import sprites.Block;
 import sprites.Paddle;
 import sprites.ScoreIndicator;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * A class that represents a gameSettings.Game.
@@ -180,7 +180,7 @@ public class Game {
      * this method set the game background according to a given color.
      *
      * @param d the DrawSurface of this game.
-     * @param color the given color.
+     * @param color the given colors.
      */
     public void setBackground(DrawSurface d, Color color) {
         d.setColor(color);
