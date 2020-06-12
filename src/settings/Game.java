@@ -1,11 +1,9 @@
 package settings;
 
 import animation.Animation;
-import animation.AnimationRunner;
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
-import biuoop.Sleeper;
 import geometry.Point;
 import geometry.Rectangle;
 import interfaces.Collidable;
@@ -35,11 +33,9 @@ public class Game implements Animation {
     private SpriteCollection sprites;
     private GameEnvironment environment;
     private Counter score;
-
     private Counter blocksCounter;
     private Counter ballsCounter;
-
-    private AnimationRunner runner;
+    //private AnimationRunner runner;
     private boolean running;
     private KeyboardSensor keyboard;
 
@@ -48,13 +44,13 @@ public class Game implements Animation {
      */
     public Game() {
         this.gui = new GUI("Arknoid", screenWidth, screenHeight);
-
         this.environment = new GameEnvironment();
         this.sprites = new SpriteCollection();
         this.score = new Counter(0);
         this.blocksCounter = new Counter();
         this.ballsCounter = new Counter(3);
         this.keyboard = keyboard;
+        this.running = true;
     }
 
     /**
@@ -71,17 +67,17 @@ public class Game implements Animation {
      */
 
     //LevelInformation level,
-    public void GameLevel(KeyboardSensor keyboard, AnimationRunner animationRunner, Counter score) {
-        this.environment = new GameEnvironment();
-        this.sprites = new SpriteCollection();
-        //this.sprites.addSprite(level.getBackground());
-        this.runner = animationRunner;
-        //this.remainingBlocks = new Counter(level.numberOfBlocksToRemove());
-        this.ballsCounter = new Counter(0);
-        this.keyboard = keyboard;
-        this.score = score;
-        this.running = true;
-    }
+//    public void GameLevel(KeyboardSensor keyboard, AnimationRunner animationRunner, Counter score) {
+//        this.environment = new GameEnvironment();
+//        this.sprites = new SpriteCollection();
+//        //this.sprites.addSprite(level.getBackground());
+//        this.runner = animationRunner;
+//        //this.remainingBlocks = new Counter(level.numberOfBlocksToRemove());
+//        this.ballsCounter = new Counter(0);
+//        this.keyboard = keyboard;
+//        this.score = score;
+//        this.running = true;
+//    }
 
     /**
      * this method adds collidable object into gameEnvironment.
@@ -106,22 +102,21 @@ public class Game implements Animation {
      * and populates the gameSettings.SpriteCollection and the gameSettings.GameEnvironment
      */
     public void initialize() {
+        System.out.println("initialize");
+        createScore();
+        createBlocks();
+    }
+
+    private void createScore() {
+        System.out.println("createScore");
         // Score Indicator
         ScoreIndicator si = new ScoreIndicator(this.score);
-        HitListener stl = new ScoreTrackingListener(this.score);
         si.addToGame(this);
+    }
 
-        //gameSettings.PrintingHitListener p = new PrintingHitListדener(); //test
-
-        int ballIndex = 0;
-        int numberOfBalls = 3;
-        for (ballIndex = 0; ballIndex < numberOfBalls; ++ballIndex) {
-            Ball newBall = new Ball(new Point(screenWidth / 2 + 50, screenHeight / 2 + 100), 5, Color.WHITE,
-                    Velocity.fromAngleAndSpeed(45 * ballIndex + 10, 5));
-            newBall.setEnvironment(this.environment);
-            this.addSprite(newBall);
-        }
-
+    private void createBlocks() {
+        System.out.println("createBlocks");
+        HitListener stl = new ScoreTrackingListener(this.score);
         //our block/ball removers
         BlockRemover blockRemover = new BlockRemover(this, this.blocksCounter);
         BallRemover ballRemover = new BallRemover(this, this.ballsCounter);
@@ -161,52 +156,24 @@ public class Game implements Animation {
                 this.blocksCounter.increase(1);
             }
         }
+        blockRemover.setRemainingBlockCounter(this.blocksCounter);
+    }
+
+    public void createBallsOnTopOfPaddle() {
+        System.out.println("createBallsOnTopOfPaddle");
         // add paddle to the games
         Point upperLeft = new Point(400, 575);
         Rectangle rect = new Rectangle(upperLeft, 150, 20);
         Paddle ourPaddle = new Paddle(this.gui, rect);
         ourPaddle.addToGame(this);
 
-        blockRemover.setRemainingBlockCounter(this.blocksCounter);
-    }
-
-    /**
-     * this method runs the game animation in a loop.
-     */
-    public void run() {
-        int framesPerSecond = 60;
-        int millisecondsPerFrame = 1000 / framesPerSecond;
-        Sleeper sleeper = new Sleeper();
-        while (!this.shouldStop()) { //// shouldStop() is in charge of stopping condition.
-            long startTime = System.currentTimeMillis(); // currentTimeMillis
-            DrawSurface d = this.gui.getDrawSurface();
-            this.setBackground(d, Color.GREEN);
-            this.sprites.drawAllOn(d);
-
-            this.doOneFrame(d); // doOneFrame(DrawSurface) is in charge of the logic.
-            gui.show(d);
-            this.sprites.notifyAllTimePassed();
-
-            // timing
-            long usedTime = (System.currentTimeMillis() - startTime);
-            long milliSecondLeftToSleep = (millisecondsPerFrame - usedTime);
-            if (milliSecondLeftToSleep > 0) { // there is more time left
-                sleeper.sleepFor(milliSecondLeftToSleep);
-            }
-            //System.out.println("blocksCounter" + blocksCounter.getValue());
-            //System.out.println("ballsCounter" + ballsCounter.getValue());
-
-
-            if (blocksCounter.getValue() == 0 || this.ballsCounter.getValue() == 0) {
-                //System.out.println("blocksCounter IF " + blocksCounter.getValue());
-                //System.out.println("ballsCounter IF " + ballsCounter.getValue());
-                if (blocksCounter.getValue() == 0) {
-                    this.score.increase(100);
-                }
-                //System.out.println(score.getValue());
-                this.gui.close();
-                break;
-            }
+        int ballIndex = 0;
+        int numberOfBalls = 3;
+        for (ballIndex = 0; ballIndex < numberOfBalls; ++ballIndex) {
+            Ball newBall = new Ball(new Point(screenWidth / 2 + 50, screenHeight / 2 + 100), 5, Color.WHITE,
+                    Velocity.fromAngleAndSpeed(45 * ballIndex + 10, 5));
+            newBall.setEnvironment(this.environment);
+            this.addSprite(newBall);
         }
     }
 
@@ -241,30 +208,69 @@ public class Game implements Animation {
     }
 
     /**
+     * this method runs the game animation in a loop.
+     */
+    public void run() {
+        System.out.println("gamerun");
+        this.createBallsOnTopOfPaddle(); // or a similar method
+        this.running = true;
+        // use our runner to run the current animation -- which is one turn of the game.
+        //this.runner.run(this);
+    }
+
+    /**
      * this method draws the current state of the animation object to the screen.
      *
      * @param d is the DrawSurface.
      */
     @Override
     public void doOneFrame(DrawSurface d) {
+        System.out.println("doOneFrame");
         // the logic from the previous run method goes here.
-        // the `return` or `break` statements should be replaced with
-        // this.running = false;//TODO
+        d = this.gui.getDrawSurface();
+
+        this.setBackground(d, Color.GREEN);
         this.sprites.drawAllOn(d);
         this.sprites.notifyAllTimePassed();
-        if (this.keyboard.isPressed("p")) {
-            this.runner.run(new PauseScreen(this.keyboard));
-        }
-        if (this.blocksCounter.getValue() == 0 || this.ballsCounter.getValue() == 0) {
+        run();
+      /*  int framesPerSecond = 60;
+        int millisecondsPerFrame = 1000 / framesPerSecond;
+        Sleeper sleeper = new Sleeper();
+        while (!this.shouldStop()) { //// shouldStop() is in charge of stopping condition.
+            long startTime = System.currentTimeMillis(); // currentTimeMillis
+            d = this.gui.getDrawSurface();
+            this.setBackground(d, Color.GREEN);
+            this.sprites.drawAllOn(d);
+
+            this.doOneFrame(d); // doOneFrame(DrawSurface) is in charge of the logic.
+            gui.show(d);
+            this.sprites.notifyAllTimePassed();
+
+            // timing
+            long usedTime = (System.currentTimeMillis() - startTime);
+            long milliSecondLeftToSleep = (millisecondsPerFrame - usedTime);
+            if (milliSecondLeftToSleep > 0) { // there is more time left
+            sleeper.sleepFor(milliSecondLeftToSleep);
+            }
+            //System.out.println("blocksCounter" + blocksCounter.getValue());
+            //System.out.println("ballsCounter" + ballsCounter.getValue());*/
+        // if (this.keyboard.isPressed("p")) {
+        //    this.runner.run(new PauseScreen(this.keyboard));
+        //  }
+        if (blocksCounter.getValue() == 0 || this.ballsCounter.getValue() == 0) { //end level
+            //System.out.println("blocksCounter IF " + blocksCounter.getValue());
+            //System.out.println("ballsCounter IF " + ballsCounter.getValue());
+            if (blocksCounter.getValue() == 0) {
+                this.score.increase(100);
+            }
+            //System.out.println(score.getValue());
+            this.gui.close();
             this.running = false;
-        }
-        if (this.keyboard.isPressed("p")) {
-            this.runner.run(new PauseScreen(this.keyboard));
         }
     }
 
     /**
-     * this method in charge of the game-specific logic and stopping conditions are handled
+     * this method in charge of the game-specific logic and stopping conditions are handled.
      *
      * @return true when the current game frame should stop. false, when shouldn't stop.
      */

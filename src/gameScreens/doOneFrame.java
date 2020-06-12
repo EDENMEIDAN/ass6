@@ -1,4 +1,4 @@
-package settings;
+package gameScreens;
 
 import biuoop.DrawSurface;
 
