@@ -1,19 +1,19 @@
 package sprites;
 
 import biuoop.DrawSurface;
-import settings.Game;
-import settings.GameEnvironment;
-import settings.Velocity;
 import geometry.Point;
 import geometry.Rectangle;
 import interfaces.Collidable;
 import interfaces.HitListener;
 import interfaces.HitNotifier;
 import interfaces.Sprite;
+import settings.Game;
+import settings.GameEnvironment;
+import settings.Velocity;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class that represents a sprites.Block.
@@ -83,6 +83,22 @@ public class Block implements Collidable, Sprite, HitNotifier {
         this.hitListeners = new ArrayList<>();
     }
 
+    /**
+     * construct a block from two coordinates, width, height, color and initial number of hits.
+     *
+     * @param x the x coordinate of the initial location of the block's upper left corner.
+     * @param y the y coordinate of the initial location of the block's upper left corner.
+     * @param width the block's width.
+     * @param height the block's height.
+     * @param color the block's color.
+     * @param hits the initial number of hits.
+     */
+    public Block(double x, double y, double width, double height, Color color, int hits) {
+        this.rect = new Rectangle(x, y, width, height);
+        this.color = color;
+        this.hits = hits;
+        this.hitListeners = new ArrayList<HitListener>();
+    }
 
     /**
      * this method gets the rectangle that the collision happens with.
