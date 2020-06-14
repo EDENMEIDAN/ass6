@@ -1,8 +1,8 @@
 package settings;
 
 import animation.Animation;
+import animation.AnimationRunner;
 import biuoop.DrawSurface;
-import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import geometry.Point;
 import geometry.Rectangle;
@@ -29,13 +29,13 @@ import java.util.Random;
 public class Game implements Animation {
     private static int screenHeight = 600;
     private static int screenWidth = 800;
-    private GUI gui;
+    //private GUI gui;
     private SpriteCollection sprites;
     private GameEnvironment environment;
     private Counter score;
     private Counter blocksCounter;
     private Counter ballsCounter;
-    //private AnimationRunner runner;
+    private AnimationRunner runner;
     private boolean running;
     private KeyboardSensor keyboard;
 
@@ -43,13 +43,14 @@ public class Game implements Animation {
      * this method constructs new game object.
      */
     public Game() {
-        this.gui = new GUI("Arknoid", screenWidth, screenHeight);
+        //this.gui = new GUI("Arknoid", screenWidth, screenHeight);
         this.environment = new GameEnvironment();
         this.sprites = new SpriteCollection();
         this.score = new Counter(0);
         this.blocksCounter = new Counter();
         this.ballsCounter = new Counter(3);
-        this.keyboard = keyboard;
+        this.runner = new AnimationRunner();
+        this.keyboard = runner.getGui().getKeyboardSensor();
         this.running = true;
     }
 
@@ -164,7 +165,7 @@ public class Game implements Animation {
         // add paddle to the games
         Point upperLeft = new Point(400, 575);
         Rectangle rect = new Rectangle(upperLeft, 150, 20);
-        Paddle ourPaddle = new Paddle(this.gui, rect);
+        Paddle ourPaddle = new Paddle(this.runner.getGui(), rect);
         ourPaddle.addToGame(this);
 
         int ballIndex = 0;
@@ -185,8 +186,8 @@ public class Game implements Animation {
      */
     public void setBackground(DrawSurface d, Color color) {
         d.setColor(color);
-        d.fillRectangle(0, 0, this.gui.getDrawSurface().getWidth(),
-                this.gui.getDrawSurface().getHeight());
+        d.fillRectangle(0, 0, this.runner.getGui().getDrawSurface().getWidth(),
+                this.runner.getGui().getDrawSurface().getHeight());
     }
 
     /**
@@ -215,7 +216,7 @@ public class Game implements Animation {
         this.createBallsOnTopOfPaddle(); // or a similar method
         this.running = true;
         // use our runner to run the current animation -- which is one turn of the game.
-        //this.runner.run(this);
+        this.runner.run(this);
     }
 
     /**
@@ -226,13 +227,12 @@ public class Game implements Animation {
     @Override
     public void doOneFrame(DrawSurface d) {
         System.out.println("doOneFrame");
-        // the logic from the previous run method goes here.
-        d = this.gui.getDrawSurface();
+        d = this.runner.getGui().getDrawSurface();
 
         this.setBackground(d, Color.GREEN);
         this.sprites.drawAllOn(d);
         this.sprites.notifyAllTimePassed();
-        run();
+        //run();
       /*  int framesPerSecond = 60;
         int millisecondsPerFrame = 1000 / framesPerSecond;
         Sleeper sleeper = new Sleeper();
@@ -264,7 +264,7 @@ public class Game implements Animation {
                 this.score.increase(100);
             }
             //System.out.println(score.getValue());
-            this.gui.close();
+            //this.gui.close();
             this.running = false;
         }
     }

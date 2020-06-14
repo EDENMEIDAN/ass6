@@ -1,5 +1,3 @@
-import animation.AnimationRunner;
-import biuoop.GUI;
 import settings.Game;
 
 /**
@@ -17,15 +15,16 @@ public class Ass6Game {
      */
     public static void main(String[] args) {
         System.out.println(11112);
-        GUI gui = new GUI("Arkanoid", 800, 600);
+        //GUI gui = new GUI("Arkanoid", 800, 600);
         System.out.println(11113);
         Game game = new Game();
         System.out.println(11114);
-        AnimationRunner animationRunner = new AnimationRunner(gui, 60);
+        //AnimationRunner animationRunner = new AnimationRunner();
         System.out.println(11115);
         game.initialize();
+        game.run();
         System.out.println(11116);
-        animationRunner.run(game);
+        //animationRunner.run(game);
         System.out.println(11117);
     }
 }
