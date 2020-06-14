@@ -2,8 +2,10 @@ package settings;
 
 import animation.Animation;
 import animation.AnimationRunner;
+import animation.CountdownAnimation;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
+import gameScreens.PauseScreen;
 import geometry.Point;
 import geometry.Rectangle;
 import interfaces.Collidable;
@@ -221,6 +223,7 @@ public class Game implements Animation {
     public void run() {
         System.out.println("gamerun");
         this.createBallsOnTopOfPaddle(); // or a similar method
+        this.runner.run(new CountdownAnimation(2, 3, this.sprites)); // countdown before turn starts.
         this.running = true;
         // use our runner to run the current animation -- which is one turn of the game.
         this.runner.run(this);
@@ -259,9 +262,9 @@ public class Game implements Animation {
             }
             //System.out.println("blocksCounter" + blocksCounter.getValue());
             //System.out.println("ballsCounter" + ballsCounter.getValue());*/
-        // if (this.keyboard.isPressed("p")) {
-        //    this.runner.run(new PauseScreen(this.keyboard));
-        //  }
+        if (this.keyboard.isPressed("p")) {
+            this.runner.run(new PauseScreen(this.keyboard));
+        }
         if (blocksCounter.getValue() == 0 || this.ballsCounter.getValue() == 0) { //end level
             //System.out.println("blocksCounter IF " + blocksCounter.getValue());
             //System.out.println("ballsCounter IF " + ballsCounter.getValue());
