@@ -28,7 +28,7 @@ import java.util.Random;
  * @id: 207481177
  * @since: 03/02/2020
  */
-public class Game implements Animation {
+public class GameLevel implements Animation {
     private static int screenHeight = 600;
     private static int screenWidth = 800;
     private SpriteCollection sprites;
@@ -40,16 +40,17 @@ public class Game implements Animation {
     private boolean running;
     private KeyboardSensor keyboard;
 
+
     /**
      * this method constructs new game object.
      */
-    public Game() {
+    public GameLevel() {
         this.environment = new GameEnvironment();
         this.sprites = new SpriteCollection();
         this.score = new Counter(0);
         this.blocksCounter = new Counter();
         this.ballsCounter = new Counter(3);
-        this.runner = new AnimationRunner();
+        //this.runner = new AnimationRunner();
         this.keyboard = runner.getGui().getKeyboardSensor();
         this.running = true;
     }
@@ -224,6 +225,7 @@ public class Game implements Animation {
         System.out.println("gamerun");
         this.createBallsOnTopOfPaddle(); // or a similar method
         this.runner.run(new CountdownAnimation(2, 3, this.sprites)); // countdown before turn starts.
+
         this.running = true;
         // use our runner to run the current animation -- which is one turn of the game.
         this.runner.run(this);

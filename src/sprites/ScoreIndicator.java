@@ -1,12 +1,12 @@
 package sprites;
 
-import java.awt.Color;
-
 import biuoop.DrawSurface;
-import settings.Counter;
-import settings.Game;
 import geometry.Rectangle;
 import interfaces.Sprite;
+import settings.Counter;
+import settings.GameLevel;
+
+import java.awt.Color;
 
 /**
  * This class represents a score indicator object.
@@ -36,7 +36,7 @@ public class ScoreIndicator implements Sprite {
         surface.setColor(Color.BLACK);
         surface.drawText((int) (this.rect.getUpperLeft().getX() + this.rect.getWidth() / 2 - 20),
                 (int) (this.rect.getUpperLeft().getY() + this.rect.getHeight() / 2 + 5),
-                "Score: " + Integer.toString(this.score.getValue()), 13);
+                "Score: " + this.score.getValue(), 13);
     }
 
     /**
@@ -50,7 +50,7 @@ public class ScoreIndicator implements Sprite {
      *
      * @param game the game.
      */
-    public void addToGame(Game game) {
+    public void addToGame(GameLevel game) {
         game.addSprite(this);
     }
 }

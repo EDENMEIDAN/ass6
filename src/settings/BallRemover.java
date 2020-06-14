@@ -12,7 +12,7 @@ import sprites.Block;
  * @since: 03/06/2020
  */
 public class BallRemover implements HitListener {
-    private Game game;
+    private GameLevel game;
     private Counter remainingBalls;
 
     /**
@@ -21,7 +21,7 @@ public class BallRemover implements HitListener {
      * @param game a game to remove balls from.
      * @param remainingBalls the number of balls to remove.
      */
-    public BallRemover(Game game, Counter remainingBalls) {
+    public BallRemover(GameLevel game, Counter remainingBalls) {
         this.game = game;
         this.remainingBalls = remainingBalls;
     }

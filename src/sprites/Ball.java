@@ -1,14 +1,14 @@
 package sprites;
 
-import settings.CollisionInfo;
-import settings.Game;
-import settings.GameEnvironment;
-import settings.Velocity;
-import geometry.Line;
 import biuoop.DrawSurface;
+import geometry.Line;
 import geometry.Point;
 import geometry.Rectangle;
 import interfaces.Sprite;
+import settings.CollisionInfo;
+import settings.GameEnvironment;
+import settings.GameLevel;
+import settings.Velocity;
 
 import java.awt.Color;
 
@@ -69,7 +69,7 @@ public class Ball implements Sprite {
      * @param v the velocity of the ball.
      */
     public Ball(int x, int y, int r, java.awt.Color color, Velocity v) {
-        this.center = new Point((double) x, (double) y);
+        this.center = new Point(x, y);
         this.r = r;
         this.color = color;
         this.v = v;
@@ -308,15 +308,16 @@ public class Ball implements Sprite {
      *
      * @param game the correct game we are playing.
      */
-    public void addToGame(Game game) {
+    public void addToGame(GameLevel game) {
         game.addSprite(this);
     }
 
     /**
      * this method removes the ball from the game's sprite list.
+     *
      * @param game the game that is being played.
      */
-    public void removeFromGame(Game game) {
+    public void removeFromGame(GameLevel game) {
         game.removeSprite(this);
     }
 }

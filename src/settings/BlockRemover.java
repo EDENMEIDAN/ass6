@@ -13,7 +13,7 @@ import sprites.Block;
  * @since: 03/06/2020
  */
 public class BlockRemover implements HitListener {
-    private Game game;
+    private GameLevel game;
     private Counter remainingBlocks;
 
     /**
@@ -22,7 +22,7 @@ public class BlockRemover implements HitListener {
      * @param game a game to remove blocks from.
      * @param remainingBlocks number of blocks that were removed.
      */
-    public BlockRemover(Game game, Counter remainingBlocks) {
+    public BlockRemover(GameLevel game, Counter remainingBlocks) {
         this.game = game;
         this.remainingBlocks = remainingBlocks;
     }

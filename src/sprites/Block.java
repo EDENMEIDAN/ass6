@@ -7,8 +7,8 @@ import interfaces.Collidable;
 import interfaces.HitListener;
 import interfaces.HitNotifier;
 import interfaces.Sprite;
-import settings.Game;
 import settings.GameEnvironment;
+import settings.GameLevel;
 import settings.Velocity;
 
 import java.awt.Color;
@@ -176,7 +176,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
      *
      * @param game our current game.
      */
-    public void addToGame(Game game) {
+    public void addToGame(GameLevel game) {
         game.addCollidable(this);
         game.addSprite(this);
     }
@@ -186,7 +186,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
      *
      * @param game the game being played.
      */
-    public void removeFromGame(Game game) {
+    public void removeFromGame(GameLevel game) {
         game.removeCollidable(this);
         game.removeSprite(this);
     }

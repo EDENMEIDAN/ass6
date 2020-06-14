@@ -1,14 +1,14 @@
 package sprites;
 
+import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
-import biuoop.DrawSurface;
-import settings.Game;
-import settings.Velocity;
 import geometry.Point;
 import geometry.Rectangle;
 import interfaces.Collidable;
 import interfaces.Sprite;
+import settings.GameLevel;
+import settings.Velocity;
 
 import java.awt.Color;
 
@@ -139,7 +139,7 @@ public class Paddle implements Sprite, Collidable {
      *
      * @param g the game to add the paddle to.
      */
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addCollidable(this);
         g.addSprite(this);
     }
@@ -149,7 +149,7 @@ public class Paddle implements Sprite, Collidable {
      *
      * @param game the game.
      */
-    public void removeFromGame(Game game) {
+    public void removeFromGame(GameLevel game) {
         game.removeCollidable(this);
         game.removeSprite(this);
     }

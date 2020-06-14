@@ -1,4 +1,4 @@
-import settings.Game;
+import settings.GameLevel;
 
 /**
  * this class is the program's main class.
@@ -15,13 +15,13 @@ public class Ass6Game {
      */
     public static void main(String[] args) {
         System.out.println(11112);
-        Game game = new Game();
+        GameLevel game = new GameLevel();
         System.out.println(11113);
-        //AnimationRunner animationRunner = new AnimationRunner();
+        //AnimationRunner animationRunner = new AnimationRunner(); //!
         game.initialize();
         System.out.println(11114);
         game.run();
         System.out.println(11115);
-        //animationRunner.run(game);
+        //animationRunner.run(game); //!
     }
 }
