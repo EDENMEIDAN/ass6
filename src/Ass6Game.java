@@ -5,7 +5,7 @@ import settings.Game;
  *
  * @author Eden Meidan
  * @id: 207481177
- * @since: 02/06/2020
+ * @since: 14/06/2020
  */
 public class Ass6Game {
     /**
@@ -15,16 +15,13 @@ public class Ass6Game {
      */
     public static void main(String[] args) {
         System.out.println(11112);
-        //GUI gui = new GUI("Arkanoid", 800, 600);
-        System.out.println(11113);
         Game game = new Game();
-        System.out.println(11114);
+        System.out.println(11113);
         //AnimationRunner animationRunner = new AnimationRunner();
-        System.out.println(11115);
         game.initialize();
+        System.out.println(11114);
         game.run();
-        System.out.println(11116);
+        System.out.println(11115);
         //animationRunner.run(game);
-        System.out.println(11117);
     }
 }

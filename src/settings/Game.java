@@ -29,7 +29,6 @@ import java.util.Random;
 public class Game implements Animation {
     private static int screenHeight = 600;
     private static int screenWidth = 800;
-    //private GUI gui;
     private SpriteCollection sprites;
     private GameEnvironment environment;
     private Counter score;
@@ -43,7 +42,6 @@ public class Game implements Animation {
      * this method constructs new game object.
      */
     public Game() {
-        //this.gui = new GUI("Arknoid", screenWidth, screenHeight);
         this.environment = new GameEnvironment();
         this.sprites = new SpriteCollection();
         this.score = new Counter(0);
@@ -108,6 +106,9 @@ public class Game implements Animation {
         createBlocks();
     }
 
+    /**
+     * this method created the score ScoreIndicator and adds it to the game.
+     */
     private void createScore() {
         System.out.println("createScore");
         // Score Indicator
@@ -115,6 +116,9 @@ public class Game implements Animation {
         si.addToGame(this);
     }
 
+    /**
+     * this method creates the 4 boarder blocks and the game blocks and adds them with the right logic to the game.
+     */
     private void createBlocks() {
         System.out.println("createBlocks");
         HitListener stl = new ScoreTrackingListener(this.score);
@@ -160,6 +164,9 @@ public class Game implements Animation {
         blockRemover.setRemainingBlockCounter(this.blocksCounter);
     }
 
+    /**
+     * this method creates the paddle and the balls to the game.
+     */
     public void createBallsOnTopOfPaddle() {
         System.out.println("createBallsOnTopOfPaddle");
         // add paddle to the games
@@ -227,12 +234,10 @@ public class Game implements Animation {
     @Override
     public void doOneFrame(DrawSurface d) {
         System.out.println("doOneFrame");
-        d = this.runner.getGui().getDrawSurface();
-
+        //d = this.runner.getGui().getDrawSurface();
         this.setBackground(d, Color.GREEN);
         this.sprites.drawAllOn(d);
         this.sprites.notifyAllTimePassed();
-        //run();
       /*  int framesPerSecond = 60;
         int millisecondsPerFrame = 1000 / framesPerSecond;
         Sleeper sleeper = new Sleeper();
@@ -264,7 +269,7 @@ public class Game implements Animation {
                 this.score.increase(100);
             }
             //System.out.println(score.getValue());
-            //this.gui.close();
+            this.runner.getGui().close();
             this.running = false;
         }
     }
