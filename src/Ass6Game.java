@@ -1,3 +1,5 @@
+import gameLevel.Level1DirectHit;
+import gameLevel.LevelInformation;
 import settings.GameLevel;
 
 /**
@@ -14,13 +16,14 @@ public class Ass6Game {
      * @param args this array stores the user's input. at the moment is empty.
      */
     public static void main(String[] args) {
-        System.out.println(11112);
-        GameLevel game = new GameLevel();
+        LevelInformation level = new Level1DirectHit();
+        GameLevel game = new GameLevel(level);
         System.out.println(11113);
         //AnimationRunner animationRunner = new AnimationRunner(); //!
         game.initialize();
         System.out.println(11114);
         game.run();
+
         System.out.println(11115);
         //animationRunner.run(game); //!
     }
