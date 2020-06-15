@@ -27,7 +27,7 @@ public class Level1DirectHit implements LevelInformation {
         this.background = new BackgroundLevel1();
         this.blocks = new ArrayList<Block>();
         Block block = new Block((Const.getScreenWidth() - blockSize) / 2,
-                (Const.getScreenHight() - blockSize) / 2,
+                (Const.getScreenHight()) / 4,
                 blockSize, blockSize, Color.RED, 1);
         this.blocks.add(block);
         this.initialBallVelocities = new ArrayList<Velocity>();

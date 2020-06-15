@@ -33,18 +33,24 @@ public class GameFlow {
      * @param levels the game levels
      */
     public void runLevels(List<LevelInformation> levels) {
+        System.out.println("runLevels");
+        System.out.println("size:" + levels.size());
         for (LevelInformation levelInfo : levels) {
+            System.out.println("runLevels in for");
             GameLevel level = new GameLevel(levelInfo, this.keyboardSensor, this.animationRunner);
             level.initialize();
             ScoreIndicator si = new ScoreIndicator(this.score); //keep track of score between levels
             level.addSprite(si);
             //keep playing game
             level.run();
+            //go to next level
 
+            System.out.println("b4 runlevel if");
             //stop game = game over
             if (levelInfo.numberOfBalls() == 0) {
                 break;
             }
+            System.out.println("after runlevel if");
         }
     }
 }

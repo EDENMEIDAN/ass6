@@ -38,9 +38,6 @@ public class GameLevel implements Animation {
     private SpriteCollection sprites;
     private GameEnvironment environment;
     private Counter score;
-//    private List<Block> blocks;
-//    private List<Velocity> initialBallsVelocity;
-//    private Paddle paddle;
     private Counter blocksCounter;
     private Counter ballsCounter;
     private AnimationRunner animationRunner;
@@ -250,7 +247,7 @@ public class GameLevel implements Animation {
             this.animationRunner.run(new PauseScreen(this.keyboard));
         }
         if (blocksCounter.getValue() == 0 || this.ballsCounter.getValue() == 0) { //end level
-            //System.out.println("blocksCounter IF " + blocksCounter.getValue());
+            System.out.println("blocksCounter IF " + blocksCounter.getValue());
             //System.out.println("ballsCounter IF " + ballsCounter.getValue());
             if (blocksCounter.getValue() == 0) {
                 this.score.increase(100);
