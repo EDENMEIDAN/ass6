@@ -1,7 +1,8 @@
-package gameLevel;
+package levels;
 
-import gameScreens.BackgroundLevel2;
 import interfaces.Sprite;
+import screens.BackgroundLevel1;
+import settings.Const;
 import settings.Velocity;
 import sprites.Block;
 
@@ -10,63 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class represents the second level of the game.
+ * This class represents the first level of the game.
  */
-public class Level2WideEasy implements LevelInformation {
+public class Level1DirectHit implements LevelInformation {
     private Sprite background;
     private List<Block> blocks;
     private List<Velocity> initialBallVelocities;
+    private int blockSize = 30;
 
     /**
-     * this method construct level 2.
+     * constructor of the fitrst level called "DirectHit".
+     * constructs the level: creating the background, blocks and initializes the balls' speeds.
      */
-    public Level2WideEasy() {
-        this.background = new BackgroundLevel2();
+    public Level1DirectHit() {
+        this.background = new BackgroundLevel1();
         this.blocks = new ArrayList<Block>();
-        int i;
-        // 2 red
-        for (i = 0; i < 2; ++i) {
-            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.RED, 1);
-            this.blocks.add(block);
-        }
-        //2 ORANGE
-        for (; i < 4; ++i) {
-            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.ORANGE, 1);
-            this.blocks.add(block);
-        }
-        //2 YELLOW
-        for (; i < 6; ++i) {
-            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.YELLOW, 1);
-            this.blocks.add(block);
-        }
-        //3 GREEN
-        for (; i < 9; ++i) {
-            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.GREEN, 1);
-            this.blocks.add(block);
-        }
-        //2 BLUE
-        for (; i < 11; ++i) {
-            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.BLUE, 1);
-            this.blocks.add(block);
-        }
-        //2 PINK
-        for (; i < 13; ++i) {
-            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.PINK, 1);
-            this.blocks.add(block);
-        }
-        //2 LIGHT BLUE
-        for (; i < 15; ++i) {
-            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.CYAN, 1);
-            this.blocks.add(block);
-        }
-        // ball velocities
+        Block block = new Block((Const.getScreenWidth() - blockSize) / 2,
+                (Const.getScreenHight() - blockSize) / 2,
+                blockSize, blockSize, Color.RED, 1);
+        this.blocks.add(block);
         this.initialBallVelocities = new ArrayList<Velocity>();
-        for (int j = -50; j <= 50; j += 10) {
-            if (j == 0) {
-                continue;
-            }
-            this.initialBallVelocities.add(Velocity.fromAngleAndSpeed(j, 4));
-        }
+        this.initialBallVelocities.add(new Velocity(0, -3));
     }
 
     /**
@@ -86,7 +51,7 @@ public class Level2WideEasy implements LevelInformation {
      */
     @Override
     public List<Velocity> initialBallVelocities() {
-        return this.initialBallVelocities();
+        return this.initialBallVelocities;
     }
 
     /**
@@ -96,7 +61,7 @@ public class Level2WideEasy implements LevelInformation {
      */
     @Override
     public int paddleSpeed() {
-        return 2;
+        return 5;
     }
 
     /**
@@ -106,7 +71,7 @@ public class Level2WideEasy implements LevelInformation {
      */
     @Override
     public int paddleWidth() {
-        return 600;
+        return 70;
     }
 
     /**
@@ -116,7 +81,7 @@ public class Level2WideEasy implements LevelInformation {
      */
     @Override
     public String levelName() {
-        return "Wide Easy";
+        return "Direct Hit";
     }
 
     /**
@@ -136,7 +101,7 @@ public class Level2WideEasy implements LevelInformation {
      */
     @Override
     public List<Block> blocks() {
-        return null;
+        return this.blocks;
     }
 
     /**

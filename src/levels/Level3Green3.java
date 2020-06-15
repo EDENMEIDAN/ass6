@@ -1,8 +1,7 @@
-package gameLevel;
+package levels;
 
-import gameScreens.BackgroundLevel1;
 import interfaces.Sprite;
-import settings.Const;
+import screens.BackgroundLevel3;
 import settings.Velocity;
 import sprites.Block;
 
@@ -11,27 +10,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class represents the first level of the game.
+ * This class represents the third level of the game.
  */
-public class Level1DirectHit implements LevelInformation {
+public class Level3Green3 implements LevelInformation {
     private Sprite background;
     private List<Block> blocks;
     private List<Velocity> initialBallVelocities;
-    private int blockSize = 30;
 
     /**
-     * constructor of the fitrst level called "DirectHit".
-     * constructs the level: creating the background, blocks and initializes the balls' speeds.
+     * this method constructs level 3.
      */
-    public Level1DirectHit() {
-        this.background = new BackgroundLevel1();
+    public Level3Green3() {
+        this.background = new BackgroundLevel3();
         this.blocks = new ArrayList<Block>();
-        Block block = new Block((Const.getScreenWidth() - blockSize) / 2,
-                (Const.getScreenHight() - blockSize) / 2,
-                blockSize, blockSize, Color.RED, 1);
-        this.blocks.add(block);
+        //10 gray
+        for (int i = 0; i < 10; ++i) {
+            Block blockArrayList = new Block(725 - i * 50, 140, 50, 20, Color.GRAY, 2);
+            this.blocks.add(blockArrayList);
+        }
+        //9 red
+        for (int i = 0; i < 9; ++i) {
+            Block blockArrayList = new Block(725 - i * 50, 160, 50, 20, Color.RED, 1);
+            this.blocks.add(blockArrayList);
+        }
+        //8 yellow
+        for (int i = 0; i < 8; ++i) {
+            Block blockArrayList = new Block(725 - i * 50, 180, 50, 20, Color.YELLOW, 1);
+            this.blocks.add(blockArrayList);
+        }
+        //7 blue
+        for (int i = 0; i < 7; ++i) {
+            Block blockArrayList = new Block(725 - i * 50, 200, 50, 20, Color.BLUE, 1);
+            this.blocks.add(blockArrayList);
+        }
+        //6 white
+        for (int i = 0; i < 6; ++i) {
+            Block blockArrayList = new Block(725 - i * 50, 220, 50, 20, Color.WHITE, 1);
+            this.blocks.add(blockArrayList);
+        }
         this.initialBallVelocities = new ArrayList<Velocity>();
-        this.initialBallVelocities.add(new Velocity(0, -3));
+        this.initialBallVelocities.add(new Velocity(2, -2));
+        this.initialBallVelocities.add(new Velocity(-2, -2));
     }
 
     /**
@@ -71,7 +90,7 @@ public class Level1DirectHit implements LevelInformation {
      */
     @Override
     public int paddleWidth() {
-        return 70;
+        return 75;
     }
 
     /**
@@ -81,7 +100,7 @@ public class Level1DirectHit implements LevelInformation {
      */
     @Override
     public String levelName() {
-        return "Direct Hit";
+        return "Green 3";
     }
 
     /**

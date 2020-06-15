@@ -1,11 +1,11 @@
 package sprites;
 
 import biuoop.DrawSurface;
-import gameLevel.GameLevel;
 import geometry.Line;
 import geometry.Point;
 import geometry.Rectangle;
 import interfaces.Sprite;
+import levels.GameLevel;
 import settings.CollisionInfo;
 import settings.GameEnvironment;
 import settings.Velocity;

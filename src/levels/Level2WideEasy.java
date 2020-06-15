@@ -1,7 +1,7 @@
-package gameLevel;
-import gameScreens.BackgroundLevel3;
+package levels;
+
 import interfaces.Sprite;
-import settings.Const;
+import screens.BackgroundLevel2;
 import settings.Velocity;
 import sprites.Block;
 
@@ -10,47 +10,63 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class represents the third level of the game.
+ * This class represents the second level of the game.
  */
-public class Level3Green3 implements LevelInformation {
+public class Level2WideEasy implements LevelInformation {
     private Sprite background;
     private List<Block> blocks;
     private List<Velocity> initialBallVelocities;
 
     /**
-     * this method constructs level 3.
+     * this method construct level 2.
      */
-    public Level3Green3() {
-        this.background = new BackgroundLevel3();
+    public Level2WideEasy() {
+        this.background = new BackgroundLevel2();
         this.blocks = new ArrayList<Block>();
-        //10 gray
-        for (int i = 0; i < 10; ++i) {
-            Block blockArrayList = new Block(725 - i * 50, 140, 50, 20, Color.GRAY, 2);
-            this.blocks.add(blockArrayList);
+        int i;
+        // 2 red
+        for (i = 0; i < 2; ++i) {
+            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.RED, 1);
+            this.blocks.add(block);
         }
-        //9 red
-        for (int i = 0; i < 9; ++i) {
-            Block blockArrayList = new Block(725 - i * 50, 160, 50, 20, Color.RED, 1);
-            this.blocks.add(blockArrayList);
+        //2 ORANGE
+        for (; i < 4; ++i) {
+            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.ORANGE, 1);
+            this.blocks.add(block);
         }
-        //8 yellow
-        for (int i = 0; i < 8; ++i) {
-            Block blockArrayList = new Block(725 - i * 50, 180, 50, 20, Color.YELLOW, 1);
-            this.blocks.add(blockArrayList);
+        //2 YELLOW
+        for (; i < 6; ++i) {
+            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.YELLOW, 1);
+            this.blocks.add(block);
         }
-        //7 blue
-        for (int i = 0; i < 7; ++i) {
-            Block blockArrayList = new Block(725 - i * 50, 200, 50, 20, Color.BLUE, 1);
-            this.blocks.add(blockArrayList);
+        //3 GREEN
+        for (; i < 9; ++i) {
+            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.GREEN, 1);
+            this.blocks.add(block);
         }
-        //6 white
-        for (int i = 0; i < 6; ++i) {
-            Block blockArrayList = new Block(725 - i * 50, 220, 50, 20, Color.WHITE, 1);
-            this.blocks.add(blockArrayList);
+        //2 BLUE
+        for (; i < 11; ++i) {
+            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.BLUE, 1);
+            this.blocks.add(block);
         }
+        //2 PINK
+        for (; i < 13; ++i) {
+            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.PINK, 1);
+            this.blocks.add(block);
+        }
+        //2 LIGHT BLUE
+        for (; i < 15; ++i) {
+            Block block = new Block(i * 50 + 25, 250, 50, 20, Color.CYAN, 1);
+            this.blocks.add(block);
+        }
+        // ball velocities
         this.initialBallVelocities = new ArrayList<Velocity>();
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
+        for (int j = -50; j <= 50; j += 10) {
+            if (j == 0) {
+                continue;
+            }
+            this.initialBallVelocities.add(Velocity.fromAngleAndSpeed(j, 4));
+        }
     }
 
     /**
@@ -70,7 +86,7 @@ public class Level3Green3 implements LevelInformation {
      */
     @Override
     public List<Velocity> initialBallVelocities() {
-        return this.initialBallVelocities;
+        return this.initialBallVelocities();
     }
 
     /**
@@ -80,7 +96,7 @@ public class Level3Green3 implements LevelInformation {
      */
     @Override
     public int paddleSpeed() {
-        return 5;
+        return 2;
     }
 
     /**
@@ -90,7 +106,7 @@ public class Level3Green3 implements LevelInformation {
      */
     @Override
     public int paddleWidth() {
-        return Const.getScreenWidth();
+        return 600;
     }
 
     /**
@@ -100,7 +116,7 @@ public class Level3Green3 implements LevelInformation {
      */
     @Override
     public String levelName() {
-        return "Green 3";
+        return "Wide Easy";
     }
 
     /**

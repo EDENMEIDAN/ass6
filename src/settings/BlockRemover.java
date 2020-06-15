@@ -1,7 +1,7 @@
 package settings;
 
-import gameLevel.GameLevel;
 import interfaces.HitListener;
+import levels.GameLevel;
 import sprites.Ball;
 import sprites.Block;
 

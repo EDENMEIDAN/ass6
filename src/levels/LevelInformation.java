@@ -1,4 +1,4 @@
-package gameLevel;
+package levels;
 
 import interfaces.Sprite;
 import settings.Velocity;

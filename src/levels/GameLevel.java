@@ -1,16 +1,16 @@
-package gameLevel;
+package levels;
 
 import animation.Animation;
 import animation.AnimationRunner;
 import animation.CountdownAnimation;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
-import gameScreens.PauseScreen;
 import geometry.Point;
 import geometry.Rectangle;
 import interfaces.Collidable;
 import interfaces.HitListener;
 import interfaces.Sprite;
+import screens.PauseScreen;
 import settings.BallRemover;
 import settings.BlockRemover;
 import settings.Const;
@@ -163,7 +163,7 @@ public class GameLevel implements Animation {
     public void createBallsOnTopOfPaddle() {
         System.out.println("createBallsOnTopOfPaddle");
         // add paddle to the games
-        Point upperLeft = new Point(400, 575);
+        Point upperLeft = new Point(375, 575);
         Rectangle rect = new Rectangle(upperLeft, levelInformation.paddleWidth(), Const.getPaddleHeight());
         Paddle ourPaddle = new Paddle(this.animationRunner.getGui(), rect);
         ourPaddle.addToGame(this);
@@ -171,7 +171,7 @@ public class GameLevel implements Animation {
         int ballIndex = 0;
         int numberOfBalls = levelInformation.numberOfBalls();
         for (ballIndex = 0; ballIndex < numberOfBalls; ++ballIndex) {
-            Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2 + 50, Const.getScreenHight() / 2 + 100), 5,
+            Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2, Const.getScreenHight() / 2 + 100), 5,
                     Color.WHITE, levelInformation.initialBallVelocities().get(ballIndex));
             newBall.setEnvironment(this.environment);
             this.addSprite(newBall);
@@ -256,7 +256,7 @@ public class GameLevel implements Animation {
                 this.score.increase(100);
             }
             //System.out.println(score.getValue());
-            this.animationRunner.getGui().close();
+            //this.animationRunner.getGui().close();
             this.running = false;
         }
     }

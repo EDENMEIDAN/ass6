@@ -1,4 +1,4 @@
-package gameScreens;
+package screens;
 
 import biuoop.DrawSurface;
 import interfaces.Sprite;
@@ -16,8 +16,10 @@ public class BackgroundLevel1 implements Sprite {
      */
 
     public void drawOn(DrawSurface d) {
+        //backraund
         d.setColor(Color.BLACK);
         d.fillRectangle(0, 0, d.getWidth(), d.getHeight());
+
         d.setColor(Color.BLUE);
         d.drawCircle(400, 170, 45);
         d.drawCircle(400, 170, 85);

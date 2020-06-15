@@ -1,7 +1,7 @@
-package gameLevel;
+package levels;
 
-import gameScreens.BackgroundLevel4;
 import interfaces.Sprite;
+import screens.BackgroundLevel4;
 import settings.Velocity;
 import sprites.Block;
 
