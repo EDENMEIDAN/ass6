@@ -19,7 +19,16 @@ public class AnimationRunner {
 
     /**
      * construct an animation runner from a given gui object.
+     *
+     * @param gui
      */
+    public AnimationRunner(GUI gui) {
+        this.millisecondsPerFrame = 60;
+        this.gui = new GUI("Arkanoid", 800, 600);
+        this.sleeper = new Sleeper();
+        //this.dt = 1 / (double) millisecondsPerFrame;
+    }
+
     public AnimationRunner() {
         this.millisecondsPerFrame = 60;
         this.gui = new GUI("Arkanoid", 800, 600);

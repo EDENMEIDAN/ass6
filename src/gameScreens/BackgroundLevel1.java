@@ -18,13 +18,13 @@ public class BackgroundLevel1 implements Sprite {
         d.setColor(Color.BLACK);
         d.fillRectangle(0, 0, d.getWidth(), d.getHeight());
         d.setColor(Color.BLUE);
-        d.drawCircle(400, 165, 30);
-        d.drawCircle(400, 165, 65);
-        d.drawCircle(400, 165, 115);
+        d.drawCircle(400, 170, 45);
+        d.drawCircle(400, 170, 85);
+        d.drawCircle(400, 170, 130);
         d.drawLine(400, 0, 400, 140);
-        d.drawLine(420, 165, 575, 165);
-        d.drawLine(400, 190, 400, 330);
-        d.drawLine(230, 165, 375, 165);
+        d.drawLine(420, 170, 575, 170);
+        d.drawLine(400, 195, 400, 330);
+        d.drawLine(230, 170, 375, 170);
     }
 
     /**

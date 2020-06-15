@@ -1,3 +1,4 @@
+import biuoop.GUI;
 import gameLevel.GameLevel;
 import gameLevel.Level1DirectHit;
 import gameLevel.LevelInformation;
@@ -16,15 +17,20 @@ public class Ass6Game {
      * @param args this array stores the user's input. at the moment is empty.
      */
     public static void main(String[] args) {
+        GUI gui = new GUI("Arkanoid", 800, 600);
+
+
         LevelInformation level = new Level1DirectHit();
         GameLevel game = new GameLevel(level);
-        System.out.println(11113);
-        //AnimationRunner animationRunner = new AnimationRunner(); //!
-        game.initialize();
-        System.out.println(11114);
-        game.run();
 
-        System.out.println(11115);
-        //animationRunner.run(game); //!
+//        AnimationRunner ar = new AnimationRunner(gui);
+//        List<LevelInformation> levels = new ArrayList<LevelInformation>();
+//          for loop to create levels?
+//        GameFlow game = new GameFlow(ar, gui.getKeyboardSensor(), 7, 800, 600);
+//        game.runLevels(levels);
+//        gui.close();
+
+        game.initialize();
+        game.run();
     }
 }
