@@ -14,6 +14,7 @@ public class BackgroundLevel1 implements Sprite {
      *
      * @param d the DrawSurface to draw on.
      */
+
     public void drawOn(DrawSurface d) {
         d.setColor(Color.BLACK);
         d.fillRectangle(0, 0, d.getWidth(), d.getHeight());
