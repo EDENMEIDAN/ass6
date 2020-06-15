@@ -20,7 +20,7 @@ public class Level1DirectHit implements LevelInformation {
     private int blockSize = 30;
 
     /**
-     * constructor of the fitrst level called "DirectHit".
+     * constructor of the first level called "DirectHit".
      * constructs the level: creating the background, blocks and initializes the balls' speeds.
      */
     public Level1DirectHit() {

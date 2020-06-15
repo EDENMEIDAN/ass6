@@ -49,8 +49,8 @@ public class GameLevel implements Animation {
      * this method constructs new level object.
      *
      * @param level object for the current level.
-     * @param keyboard
-     * @param animationRunner
+     * @param keyboard the KeyboardSensor.
+     * @param animationRunner he animationRunner.
      */
     public GameLevel(LevelInformation level, KeyboardSensor keyboard, AnimationRunner animationRunner) {
         // Counter score, int horizontalBound, int verticalBound
@@ -60,21 +60,8 @@ public class GameLevel implements Animation {
         this.score = new Counter(0);
         this.blocksCounter = new Counter(level.numberOfBlocksToRemove());
         this.ballsCounter = new Counter(level.numberOfBalls());
-        this.animationRunner = new AnimationRunner();
-        this.keyboard = animationRunner.getGui().getKeyboardSensor();
-        this.running = true;
-        this.levelInformation = level;
-    }
-
-    public GameLevel(LevelInformation level) {
-        this.environment = new GameEnvironment();
-        this.sprites = new SpriteCollection();
-        this.sprites.addSprite(level.getBackground()); //added
-        this.score = new Counter(0);
-        this.blocksCounter = new Counter(level.numberOfBlocksToRemove());
-        this.ballsCounter = new Counter(level.numberOfBalls());
-        this.animationRunner = new AnimationRunner();
-        this.keyboard = animationRunner.getGui().getKeyboardSensor();
+        this.animationRunner = animationRunner;
+        this.keyboard = keyboard;
         this.running = true;
         this.levelInformation = level;
     }
