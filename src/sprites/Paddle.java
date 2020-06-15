@@ -3,11 +3,11 @@ package sprites;
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
+import gameLevel.GameLevel;
 import geometry.Point;
 import geometry.Rectangle;
 import interfaces.Collidable;
 import interfaces.Sprite;
-import settings.GameLevel;
 import settings.Velocity;
 
 import java.awt.Color;

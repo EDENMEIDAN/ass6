@@ -1,17 +1,23 @@
-package settings;
+package gameLevel;
 
 import animation.Animation;
 import animation.AnimationRunner;
 import animation.CountdownAnimation;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
-import gameLevel.LevelInformation;
 import gameScreens.PauseScreen;
 import geometry.Point;
 import geometry.Rectangle;
 import interfaces.Collidable;
 import interfaces.HitListener;
 import interfaces.Sprite;
+import settings.BallRemover;
+import settings.BlockRemover;
+import settings.Const;
+import settings.Counter;
+import settings.GameEnvironment;
+import settings.ScoreTrackingListener;
+import settings.SpriteCollection;
 import sprites.Ball;
 import sprites.Block;
 import sprites.Paddle;
@@ -34,57 +40,34 @@ public class GameLevel implements Animation {
     private SpriteCollection sprites;
     private GameEnvironment environment;
     private Counter score;
+    //    private List<Block> blocks;
+//    private List<Velocity> initialBallsVelocity;
+//    private Paddle paddle;
     private Counter blocksCounter;
     private Counter ballsCounter;
-    private AnimationRunner runner;
+    private AnimationRunner animationRunner;
     private boolean running;
     private KeyboardSensor keyboard;
     private LevelInformation levelInformation;
 
-
     /**
-     * this method constructs new game object.
+     * this method constructs new level object.
      *
-     * @param level
+     * @param level the levelInfornation object for the current level.
      */
     public GameLevel(LevelInformation level) {
+        //KeyboardSensor keyboard, AnimationRunner animationRunner, Counter score, int horizontalBound, int verticalBound)
         this.environment = new GameEnvironment();
         this.sprites = new SpriteCollection();
-        this.sprites = new SpriteCollection();
+        this.sprites.addSprite(level.getBackground()); //added
         this.score = new Counter(0);
-        this.blocksCounter = new Counter();
+        this.blocksCounter = new Counter(level.numberOfBlocksToRemove());
         this.ballsCounter = new Counter(level.numberOfBalls());
-        this.runner = new AnimationRunner();
-        this.keyboard = runner.getGui().getKeyboardSensor();
+        this.animationRunner = new AnimationRunner();
+        this.keyboard = animationRunner.getGui().getKeyboardSensor();
         this.running = true;
         this.levelInformation = level;
     }
-
-    /**
-     * this method constructs a gameLevel object.
-     *
-     * //@param level the levelInfornation object for the current level.
-     *
-     * @param keyboard a keyboard sensor connected to a gui object.
-     * @param animationRunner an animation runner connected to a gui object.
-     * @param score a score counter holding the current score.
-     * //@param lives a lives counter holding the current lives.
-     * //@param horizontalBound the available width.
-     * //@param verticalBound the available height.
-     */
-
-    //LevelInformation level,
-/*    public void GameLevel(KeyboardSensor keyboard, AnimationRunner animationRunner, Counter score) {
-        this.environment = new GameEnvironment();
-        this.sprites = new SpriteCollection();
-        this.sprites.addSprite(level.getBackground());
-        this.runner = animationRunner;
-        this.remainingBlocks = new Counter(level.numberOfBlocksToRemove());
-        this.ballsCounter = new Counter(0);
-        this.keyboard = keyboard;
-        this.score = score;
-        this.running = true;
-    }*/
 
     /**
      * this method adds collidable object into gameEnvironment.
@@ -169,7 +152,7 @@ public class GameLevel implements Animation {
         // add paddle to the games
         Point upperLeft = new Point(400, 575);
         Rectangle rect = new Rectangle(upperLeft, levelInformation.paddleWidth(), Const.getPaddleHeight());
-        Paddle ourPaddle = new Paddle(this.runner.getGui(), rect);
+        Paddle ourPaddle = new Paddle(this.animationRunner.getGui(), rect);
         ourPaddle.addToGame(this);
 
         int ballIndex = 0;
@@ -182,12 +165,9 @@ public class GameLevel implements Animation {
         }
     }
 
-    /* *
-     * this method set the game background according to a given color.
-     *
-     * @param d the DrawSurface of this game.
-     * @param color the given colors.*/
-
+    /**
+     * his method set the game background according to a given color.
+     */
     public void setBackground() {
         addSprite(levelInformation.getBackground());
     }
@@ -216,10 +196,10 @@ public class GameLevel implements Animation {
     public void run() {
         System.out.println("gamerun");
         this.createBallsOnTopOfPaddle(); // or a similar method
-        this.runner.run(new CountdownAnimation(2, 3, this.sprites)); // countdown before turn starts.
+        this.animationRunner.run(new CountdownAnimation(2, 3, this.sprites)); // countdown before turn starts.
         this.running = true;
         // use our runner to run the current animation -- which is one turn of the game.
-        this.runner.run(this);
+        this.animationRunner.run(this);
     }
 
     /**
@@ -230,8 +210,6 @@ public class GameLevel implements Animation {
     @Override
     public void doOneFrame(DrawSurface d) {
         System.out.println("doOneFrame");
-        //d = this.runner.getGui().getDrawSurface();
-        this.setBackground();
         this.sprites.drawAllOn(d);
         this.sprites.notifyAllTimePassed();
       /*  int framesPerSecond = 60;
@@ -256,7 +234,7 @@ public class GameLevel implements Animation {
             //System.out.println("blocksCounter" + blocksCounter.getValue());
             //System.out.println("ballsCounter" + ballsCounter.getValue());*/
         if (this.keyboard.isPressed("p")) {
-            this.runner.run(new PauseScreen(this.keyboard));
+            this.animationRunner.run(new PauseScreen(this.keyboard));
         }
         if (blocksCounter.getValue() == 0 || this.ballsCounter.getValue() == 0) { //end level
             //System.out.println("blocksCounter IF " + blocksCounter.getValue());
@@ -265,7 +243,7 @@ public class GameLevel implements Animation {
                 this.score.increase(100);
             }
             //System.out.println(score.getValue());
-            this.runner.getGui().close();
+            this.animationRunner.getGui().close();
             this.running = false;
         }
     }

@@ -31,7 +31,7 @@ public class Counter {
      *
      * @param number the given number.
      */
-    void increase(int number) {
+    public void increase(int number) {
         this.value += number;
     }
 

@@ -1,6 +1,7 @@
 package sprites;
 
 import biuoop.DrawSurface;
+import gameLevel.GameLevel;
 import geometry.Point;
 import geometry.Rectangle;
 import interfaces.Collidable;
@@ -8,7 +9,6 @@ import interfaces.HitListener;
 import interfaces.HitNotifier;
 import interfaces.Sprite;
 import settings.GameEnvironment;
-import settings.GameLevel;
 import settings.Velocity;
 
 import java.awt.Color;

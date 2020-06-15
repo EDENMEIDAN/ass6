@@ -1,19 +1,21 @@
 package settings;
 
 /**
- *
+ * this  class represents all the constant variables.
  */
 public class Const {
 
-    public static int getScreenHight() {
+    static final int NUM_OF_GAME_LEVELS = 4;
+
+    static final int getScreenHight() {
         return 600;
     }
 
-    public static int getScreenWidth() {
+    static final int getScreenWidth() {
         return 800;
     }
 
-    public static int getPaddleHeight() {
+    static final int getPaddleHeight() {
         return 20;
     }
 }

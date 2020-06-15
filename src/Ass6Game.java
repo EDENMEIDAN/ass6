@@ -1,6 +1,6 @@
+import gameLevel.GameLevel;
 import gameLevel.Level1DirectHit;
 import gameLevel.LevelInformation;
-import settings.GameLevel;
 
 /**
  * this class is the program's main class.

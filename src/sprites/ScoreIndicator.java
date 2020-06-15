@@ -1,10 +1,10 @@
 package sprites;
 
 import biuoop.DrawSurface;
+import gameLevel.GameLevel;
 import geometry.Rectangle;
 import interfaces.Sprite;
 import settings.Counter;
-import settings.GameLevel;
 
 import java.awt.Color;
 
