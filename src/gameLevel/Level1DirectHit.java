@@ -23,7 +23,7 @@ public class Level1DirectHit implements LevelInformation {
      * constructor of the fitrst level called "DirectHit".
      * constructs the level: creating the background, blocks and initializes the balls' speeds.
      */
-    public void directHit() {
+    public Level1DirectHit() {
         this.background = new BackgroundLevel1();
         this.blocks = new ArrayList<Block>();
         Block block = new Block((Const.getScreenWidth() - blockSize) / 2,

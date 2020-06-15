@@ -3,8 +3,8 @@ package settings;
 import biuoop.DrawSurface;
 import interfaces.Sprite;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A gameSettings.SpriteCollection class that creates a collection of sprite objects.
@@ -45,7 +45,10 @@ public class SpriteCollection {
      */
     public void notifyAllTimePassed() {
         for (int i = 0; i < spriteList.size(); ++i) {
-            this.spriteList.get(i).timePassed();
+            Sprite s = spriteList.get(i);
+            if (s != null) {
+                s.timePassed();
+            }
         }
     }
 

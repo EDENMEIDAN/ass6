@@ -35,12 +35,10 @@ import java.util.List;
  * @since: 03/02/2020
  */
 public class GameLevel implements Animation {
-    private static int screenHeight = 600;
-    private static int screenWidth = 800;
     private SpriteCollection sprites;
     private GameEnvironment environment;
     private Counter score;
-    //    private List<Block> blocks;
+//    private List<Block> blocks;
 //    private List<Velocity> initialBallsVelocity;
 //    private Paddle paddle;
     private Counter blocksCounter;
@@ -56,7 +54,8 @@ public class GameLevel implements Animation {
      * @param level the levelInfornation object for the current level.
      */
     public GameLevel(LevelInformation level) {
-        //KeyboardSensor keyboard, AnimationRunner animationRunner, Counter score, int horizontalBound, int verticalBound)
+        //KeyboardSensor keyboard, AnimationRunner animationRunner,
+        // Counter score, int horizontalBound, int verticalBound)
         this.environment = new GameEnvironment();
         this.sprites = new SpriteCollection();
         this.sprites.addSprite(level.getBackground()); //added
@@ -120,13 +119,13 @@ public class GameLevel implements Animation {
         //creates 4 block around draw surface perimeter
         List<Block> blockList = new ArrayList<>();
         //upBound
-        blockList.add(new Block(new Point(0, 20), screenWidth, 20, Color.GRAY));
+        blockList.add(new Block(new Point(0, 20), Const.getScreenWidth(), 20, Color.GRAY));
         //killerBound - bottom bound
-        blockList.add(new Block(new Point(0, screenHeight), screenWidth, 1, Color.pink));
+        blockList.add(new Block(new Point(0, Const.getScreenHight()), Const.getScreenWidth(), 1, Color.pink));
         //leftBound
-        blockList.add(new Block(new Point(0, 20), 20, screenHeight, Color.GRAY));
+        blockList.add(new Block(new Point(0, 20), 20, Const.getScreenHight(), Color.GRAY));
         //rightBound
-        blockList.add(new Block(new Point(screenWidth - 20, 20), 20, screenHeight, Color.GRAY));
+        blockList.add(new Block(new Point(Const.getScreenWidth() - 20, 20), 20, Const.getScreenHight(), Color.GRAY));
 
         // add blocks to game
         for (Block b : blockList) {
@@ -158,7 +157,7 @@ public class GameLevel implements Animation {
         int ballIndex = 0;
         int numberOfBalls = levelInformation.numberOfBalls();
         for (ballIndex = 0; ballIndex < numberOfBalls; ++ballIndex) {
-            Ball newBall = new Ball(new Point(screenWidth / 2 + 50, screenHeight / 2 + 100), 5,
+            Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2 + 50, Const.getScreenHight() / 2 + 100), 5,
                     Color.WHITE, levelInformation.initialBallVelocities().get(ballIndex));
             newBall.setEnvironment(this.environment);
             this.addSprite(newBall);
