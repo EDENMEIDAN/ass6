@@ -18,7 +18,7 @@ public class Level3Green3 implements LevelInformation {
     private List<Velocity> initialBallVelocities;
 
     /**
-     * this method construct level 3.
+     * this method constructs level 3.
      */
     public Level3Green3() {
         this.background = new BackgroundLevel3();
