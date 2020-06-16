@@ -18,6 +18,7 @@ import settings.Counter;
 import settings.GameEnvironment;
 import settings.ScoreTrackingListener;
 import settings.SpriteCollection;
+import settings.Velocity;
 import sprites.Ball;
 import sprites.Block;
 import sprites.Paddle;
@@ -158,14 +159,23 @@ public class GameLevel implements Animation {
         System.out.println("numberOfBalls " + numberOfBalls);
 
         this.ballsCounter.setValue(numberOfBalls); //reset ball counter
+
         //System.out.println("ballsCounter " + this.ballsCounter.setValue(););
 
-        for (int ballIndex = 0; ballIndex < numberOfBalls; ballIndex++) {
+        for (Velocity v : levelInformation.initialBallVelocities()) {
+            System.out.println("in forv");
+            Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2, Const.getScreenHight() / 2 + 100), 5,
+                    Color.WHITE, v, this.environment);
+            this.addSprite(newBall);
+            System.out.println("newBall " + newBall);
+        }
+        System.out.println("out forv");
+       /* for (int ballIndex = 0; ballIndex < numberOfBalls; ballIndex++) {
             Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2, Const.getScreenHight() / 2 + 100), 5,
                     Color.WHITE, levelInformation.initialBallVelocities().get(ballIndex), this.environment);
             //newBall.setEnvironment(this.environment);
             this.addSprite(newBall);
-        }
+        }*/
     }
 
     /**
@@ -214,8 +224,8 @@ public class GameLevel implements Animation {
         System.out.println("doOneFrame");
         this.sprites.drawAllOn(d);
         this.sprites.notifyAllTimePassed();
-            //System.out.println("blocksCounter" + blocksCounter.getValue());
-            //System.out.println("ballsCounter" + ballsCounter.getValue());*/
+        //System.out.println("blocksCounter" + blocksCounter.getValue());
+        //System.out.println("ballsCounter" + ballsCounter.getValue());*/
         if (this.keyboard.isPressed("p")) {
             this.animationRunner.run(new PauseScreen(this.keyboard));
         }

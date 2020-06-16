@@ -60,16 +60,15 @@ public class Level2WideEasy implements LevelInformation {
             this.blocks.add(block);
         }
         // ball velocities
-        this.initialBallVelocities = new ArrayList<Velocity>();
-        this.initialBallVelocities.add(Velocity.fromAngleAndSpeed(-4, 4));
-
         /*this.initialBallVelocities = new ArrayList<Velocity>();
+        this.initialBallVelocities.add(Velocity.fromAngleAndSpeed(-4, 4));*/
+        this.initialBallVelocities = new ArrayList<Velocity>();
         for (int j = -50; j <= 50; j += 10) {
             if (j == 0) {
                 continue;
             }
             this.initialBallVelocities.add(Velocity.fromAngleAndSpeed(j, 4));
-        }*/
+        }
     }
 
     /**
@@ -89,7 +88,7 @@ public class Level2WideEasy implements LevelInformation {
      */
     @Override
     public List<Velocity> initialBallVelocities() {
-        return this.initialBallVelocities();
+        return this.initialBallVelocities;
     }
 
     /**
