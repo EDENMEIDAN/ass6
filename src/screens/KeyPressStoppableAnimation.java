@@ -6,6 +6,10 @@ import biuoop.KeyboardSensor;
 
 /**
  * this class is an KeyPressStoppableAnimation object that that stops animations.
+ *
+ * @author Eden Meidan
+ * @id: 207481177
+ * @since 16/06/20
  */
 public class KeyPressStoppableAnimation implements Animation {
     private KeyboardSensor keyboardSensor;
@@ -18,8 +22,8 @@ public class KeyPressStoppableAnimation implements Animation {
      * constroctor of the KeyPressStoppableAnimation object.
      *
      * @param keyboardSensor is the keyboardSensor sensor.
-     * @param key
-     * @param animation
+     * @param key is the keys that are pressed on keyboard as a string.
+     * @param animation the given animation.
      */
     public KeyPressStoppableAnimation(KeyboardSensor keyboardSensor, String key, Animation animation) {
         this.keyboardSensor = keyboardSensor;

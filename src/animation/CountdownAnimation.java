@@ -7,6 +7,10 @@ import java.awt.Color;
 
 /**
  * this class represents a count down animation object.
+ *
+ * @author Eden Meidan
+ * @id: 207481177
+ * @since 16/06/20
  */
 public class CountdownAnimation implements Animation {
     private boolean running;
@@ -35,32 +39,18 @@ public class CountdownAnimation implements Animation {
     }
 
     /**
-     * this method gets the color and the DrawSurface and draws the background on the DrawSurface.
-     *
-     * @param d the DrawSurface.
-     * @param color the color.
-     */
-    public void setBackground(DrawSurface d, Color color) {
-        d.setColor(color);
-        d.fillRectangle(0, 0, d.getWidth(), d.getHeight());
-    }
-
-    /**
      * this method draws each frame of the animation of the count down animation on a given DrawSurface.
      * when count down reaches 0 it changes the running member to false, so the animation will stop.
      *
      * @param d the DrawSurface to draw on.
      */
     public void doOneFrame(DrawSurface d) {
-        System.out.println("CountdownAnimation doOneFrame");
+        //System.out.println("CountdownAnimation doOneFrame");
         if (this.countFrom == 0) {
             this.running = false;
         }
-        this.setBackground(d, Color.black);
-        System.out.println("CountdownAnimation doOneFrame after setBackground");
-        this.gameScreen.drawAllOn(d); //!!!!!!!!!!!!!!!
-        System.out.println("CountdownAnimation doOneFrame after game screen");
-        d.setColor(Color.decode("#fec04c"));
+        this.gameScreen.drawAllOn(d);
+        d.setColor(Color.white);
         d.drawText(385, 450, Integer.toString(this.countFrom), 65);
         if (System.currentTimeMillis() - this.initiationTime > this.numOfMillis / this.initialCount) {
             this.initiationTime = System.currentTimeMillis();

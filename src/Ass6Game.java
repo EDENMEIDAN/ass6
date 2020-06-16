@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Eden Meidan
  * @id: 207481177
- * @since: 14/06/2020
+ * @since 14/06/2020
  */
 public class Ass6Game {
     /**
@@ -25,33 +25,35 @@ public class Ass6Game {
      * @param args this array stores the user's input. at the moment is empty.
      */
     public static void main(String[] args) {
-        System.out.println(111);
         GUI gui = new GUI("Arkanoid", Const.getScreenWidth(), Const.getScreenHight());
-        System.out.println(222);
         AnimationRunner runner = new AnimationRunner(gui, 60 / 6);
-        System.out.println(333);
-
-        //LevelInformation level = new Level1DirectHit();
-
-        List<LevelInformation> levels = new ArrayList<LevelInformation>();
-        System.out.println(444);
+        List<LevelInformation> levelsToPlay = new ArrayList<>();
         LevelInformation level1 = new Level1DirectHit();
-        levels.add(level1);
-        System.out.println(555);
         LevelInformation level2 = new Level2WideEasy();
-        levels.add(level2);
-        System.out.println(666);
         LevelInformation level3 = new Level3Green3();
-        levels.add(level3);
-        System.out.println(777);
         LevelInformation level4 = new Level4FinalFour();
-        levels.add(level4);
-        System.out.println(888);
-        GameFlow gameFlow = new GameFlow(runner, gui.getKeyboardSensor());
-        System.out.println(999);
-        gameFlow.runLevels(levels);
-        System.out.println(1000);
 
+        for (int i = 0; i < args.length; i++) {
+            String cur = args[i];
+            System.out.println("arg is: " + cur);
+            if (cur.equals("1")) {
+                levelsToPlay.add(level1);
+            } else if (cur.equals("2")) {
+                levelsToPlay.add(level2);
+            } else if (cur.equals("3")) {
+                levelsToPlay.add(level3);
+            } else if (cur.equals("4")) {
+                levelsToPlay.add(level4);
+            }
+        }
+        if (levelsToPlay.isEmpty()) {
+            levelsToPlay.add(level1);
+            levelsToPlay.add(level2);
+            levelsToPlay.add(level3);
+            levelsToPlay.add(level4);
+        }
+        GameFlow gameFlow = new GameFlow(runner, gui.getKeyboardSensor());
+        gameFlow.runLevels(levelsToPlay);
         runner.getGui().close();
     }
 }

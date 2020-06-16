@@ -34,10 +34,6 @@ public class ScoreIndicator implements Sprite {
         surface.setColor(Color.LIGHT_GRAY);
         surface.fillRectangle(0, 0, 800, 20);
         surface.setColor(Color.BLACK);
-        /*surface.drawText((int) (this.rect.getUpperLeft().getX() + this.rect.getWidth() / 2 - 20),
-                (int) (this.rect.getUpperLeft().getY() + this.rect.getHeight() / 2 + 5),
-                "Score: " + this.score.getValue(), 13);*/
-
         surface.drawText((int) (this.rect.getUpperLeft().getX() + this.rect.getWidth() / 2 - 20),
                 (int) (this.rect.getUpperLeft().getY() + this.rect.getHeight() / 2 + 5),
                 "Score: " + this.score.getValue(), 13);

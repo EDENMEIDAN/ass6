@@ -8,6 +8,10 @@ import java.awt.Color;
 
 /**
  * This class represents a pause screen object.
+ *
+ * @author Eden Meidan
+ * @id: 207481177
+ * @since 16/06/20
  */
 public class PauseScreen implements Animation {
     private KeyboardSensor keyboard;
@@ -16,10 +20,10 @@ public class PauseScreen implements Animation {
     /**
      * construct of a pause screen object that uses a keyboard sensor.
      *
-     * @param k
+     * @param keyboard the KeyboardSensor used in the game.
      */
-    public PauseScreen(KeyboardSensor k) {
-        this.keyboard = k;
+    public PauseScreen(KeyboardSensor keyboard) {
+        this.keyboard = keyboard;
         this.stop = false;
     }
 
@@ -54,4 +58,3 @@ public class PauseScreen implements Animation {
         return this.stop;
     }
 }
-

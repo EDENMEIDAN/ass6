@@ -5,11 +5,11 @@ import biuoop.GUI;
 import biuoop.Sleeper;
 
 /**
- * this class represents an animation runner whick contains the main graphic loop of the whole game.
+ * this class represents an animation runner which contains the main graphic loop of the whole game.
  *
  * @author Eden Meidan
  * @id: 207481177
- * @since: 11/06/20
+ * @since 11/06/20
  */
 
 public class AnimationRunner {
@@ -42,16 +42,12 @@ public class AnimationRunner {
      * @param animation the game
      */
     public void run(Animation animation) {
-        System.out.println("animationRunner run");
-        System.out.println(animation.shouldStop()); //should be false
-        long newMillisecondsPerFrame = 1000 / this.millisecondsPerFrame;
+        // System.out.println("animationRunner run");
+        //System.out.println(animation.shouldStop()); //should be false
 
         while (!animation.shouldStop()) {
-            System.out.println("animationRunner in shouldStop while");
             DrawSurface d = this.gui.getDrawSurface();
-            System.out.println("animationRunner run before doOneFrame");
             animation.doOneFrame(d); //!!!!!!!!!!!!
-            System.out.println("animationRunner run after doOneFrame");
             this.gui.show(d);
 
             long startTime = System.currentTimeMillis(); // timing

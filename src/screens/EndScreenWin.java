@@ -9,6 +9,10 @@ import java.awt.Color;
 
 /**
  * This class represents the end screen object that will be displayed in the end of the game when player won.
+ *
+ * @author Eden Meidan
+ * @id: 207481177
+ * @since 16/06/20
  */
 public class EndScreenWin implements Animation {
     private int score;

@@ -1,7 +1,6 @@
 package sprites;
 
 import biuoop.DrawSurface;
-import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import geometry.Point;
 import geometry.Rectangle;
@@ -17,29 +16,20 @@ import java.awt.Color;
  *
  * @author Eden Meidan
  * @id: 207481177
- * @since: 06/05/2020
+ * @since 06/05/2020
  */
 public class Paddle implements Sprite, Collidable {
     private static int paddleWidth = 50;
     private static int paddleHeight = 10;
-
     private Rectangle rect;
-    private Color color;
     private KeyboardSensor keyboard;
-    private int horizontalBound;
-    private int verticalBound;
 
     /**
      * this method is a paddle constructor.
      *
-     * @param gui the bio Graphical User Interface we want the paddle to use.
-     * @param rect the rectangle the paddle is make of.
+     * @param rectangle the rectangle the paddle is make of.
+     * @param keyboard the KeyboardSensor we use to move the paddle.
      */
-    public Paddle(GUI gui, Rectangle rect) {
-        this.rect = rect;
-        this.keyboard = gui.getKeyboardSensor();
-    }
-
     public Paddle(Rectangle rectangle, KeyboardSensor keyboard) {
         this.rect = rectangle;
         this.keyboard = keyboard;
@@ -108,7 +98,8 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * This method returns the new velocity according to the part where the ball hits the paddle.
-     *this method receives collisionPoint & velocity then calculates the new velocity accordingly.
+     * this method receives collisionPoint & velocity then calculates the new velocity accordingly.
+     *
      * @param hitter the hitting ball.
      * @param collisionPoint the point where both objects collide.
      * @param currentVelocity the velocity the moving object is moving in.
@@ -148,23 +139,10 @@ public class Paddle implements Sprite, Collidable {
         g.addSprite(this);
     }
 
-    /**
-     * this method removes paddle from the game.
-     *
-     * @param game the game.
-     */
+    /*
+    this method removes paddle from the game.
     public void removeFromGame(GameLevel game) {
         game.removeCollidable(this);
         game.removeSprite(this);
-    }
-
-    /**
-     * this method moves the paddle to the middle bottom of the screen.
-     */
-    public void putInMiddle() {
-        double x = this.horizontalBound / 2 - this.rect.getWidth() / 2;
-        double y = this.verticalBound - this.rect.getHeight() - 10;
-        Point middle = new Point(x, y);
-        this.rect = new Rectangle(middle, this.rect.getWidth(), this.rect.getHeight());
-    }
+    }*/
 }

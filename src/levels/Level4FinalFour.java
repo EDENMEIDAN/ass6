@@ -11,6 +11,10 @@ import java.util.List;
 
 /**
  * This class represents the fourth level of the game.
+ *
+ * @author Eden Meidan
+ * @id: 207481177
+ * @since 16/06/20
  */
 public class Level4FinalFour implements LevelInformation {
     private Sprite background;
@@ -22,7 +26,8 @@ public class Level4FinalFour implements LevelInformation {
      */
     public Level4FinalFour() {
         this.background = new BackgroundLevel4();
-        this.blocks = new ArrayList<Block>();
+        this.blocks = new ArrayList<>();
+        // create the colored blocks per line
         for (int i = 0; i < 15; ++i) {
             Block block = new Block(725 - i * 50, 140, 50, 20, Color.GRAY, 2);
             this.blocks.add(block);
@@ -53,32 +58,6 @@ public class Level4FinalFour implements LevelInformation {
         }
         this.initialBallVelocities = new ArrayList<Velocity>();
         this.initialBallVelocities.add(new Velocity(2, -2));
-
-
-        this.initialBallVelocities.add(new Velocity(0, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(2, -1));
-        this.initialBallVelocities.add(new Velocity(1, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -1));
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(0, -3));
-        this.initialBallVelocities.add(new Velocity(-3, -2));
-        this.initialBallVelocities.add(new Velocity(2, -3));
-        this.initialBallVelocities.add(new Velocity(3, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -1));
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(0, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(2, -1));
-        this.initialBallVelocities.add(new Velocity(1, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -1));
-        this.initialBallVelocities.add(new Velocity(2, 2));
-        this.initialBallVelocities.add(new Velocity(0, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(2, -3));
-        this.initialBallVelocities.add(new Velocity(3, -2));
-        this.initialBallVelocities.add(new Velocity(-2, -1));
-
     }
 
     /**
@@ -118,7 +97,7 @@ public class Level4FinalFour implements LevelInformation {
      */
     @Override
     public int paddleWidth() {
-        return 590;
+        return 80;
     }
 
     /**

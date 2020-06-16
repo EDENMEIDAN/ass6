@@ -22,8 +22,8 @@ public class Level3Green3 implements LevelInformation {
      */
     public Level3Green3() {
         this.background = new BackgroundLevel3();
-        this.blocks = new ArrayList<Block>();
-        /*//10 gray
+        this.blocks = new ArrayList<>();
+        //10 gray - double hit!
         for (int i = 0; i < 10; ++i) {
             Block blockArrayList = new Block(725 - i * 50, 140, 50, 20, Color.GRAY, 2);
             this.blocks.add(blockArrayList);
@@ -42,94 +42,15 @@ public class Level3Green3 implements LevelInformation {
         for (int i = 0; i < 7; ++i) {
             Block blockArrayList = new Block(725 - i * 50, 200, 50, 20, Color.BLUE, 1);
             this.blocks.add(blockArrayList);
-        }*/
+        }
         //6 white
         for (int i = 0; i < 6; ++i) {
             Block blockArrayList = new Block(725 - i * 50, 220, 50, 20, Color.WHITE, 1);
             this.blocks.add(blockArrayList);
         }
-        this.initialBallVelocities = new ArrayList<Velocity>();
+        this.initialBallVelocities = new ArrayList<>();
         this.initialBallVelocities.add(new Velocity(2, -2));
         this.initialBallVelocities.add(new Velocity(-2, -2));
-
-
-        this.initialBallVelocities.add(new Velocity(1, -2));
-        this.initialBallVelocities.add(new Velocity(-2, 1));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(-3, -2));
-        this.initialBallVelocities.add(new Velocity(5, -2));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(1, -2));
-        this.initialBallVelocities.add(new Velocity(-2, 5));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(-3, -2));
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(1, -2));
-        this.initialBallVelocities.add(new Velocity(-2, 1));
-        this.initialBallVelocities.add(new Velocity(-5, -2));
-        this.initialBallVelocities.add(new Velocity(-3, -2));
-        this.initialBallVelocities = new ArrayList<Velocity>();
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(-2, -5));
-        this.initialBallVelocities.add(new Velocity(1, -2));
-        this.initialBallVelocities.add(new Velocity(-2, 1));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(-3, -2));
-
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(1, -2));
-        this.initialBallVelocities.add(new Velocity(-2, 1));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(-3, -2));
-
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(1, -2));
-        this.initialBallVelocities.add(new Velocity(-2, 1));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(-3, -2));
-
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(1, -2));
-        this.initialBallVelocities.add(new Velocity(-2, 1));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(-3, -2));
-
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(1, -2));
-        this.initialBallVelocities.add(new Velocity(-2, 1));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(-3, -2));
-
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(0, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(2, -1));
-        this.initialBallVelocities.add(new Velocity(1, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -1));
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(0, -3));
-        this.initialBallVelocities.add(new Velocity(-3, -2));
-        this.initialBallVelocities.add(new Velocity(2, -3));
-        this.initialBallVelocities.add(new Velocity(3, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -1));
-        this.initialBallVelocities.add(new Velocity(2, -2));
-        this.initialBallVelocities.add(new Velocity(0, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(2, -1));
-        this.initialBallVelocities.add(new Velocity(1, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -1));
-        this.initialBallVelocities.add(new Velocity(2, 2));
-        this.initialBallVelocities.add(new Velocity(0, -3));
-        this.initialBallVelocities.add(new Velocity(-2, -2));
-        this.initialBallVelocities.add(new Velocity(2, -3));
-        this.initialBallVelocities.add(new Velocity(3, -2));
-        this.initialBallVelocities.add(new Velocity(-2, -1));
-
     }
 
     /**
@@ -169,7 +90,7 @@ public class Level3Green3 implements LevelInformation {
      */
     @Override
     public int paddleWidth() {
-        return 590;
+        return 80;
     }
 
     /**

@@ -9,6 +9,10 @@ import java.awt.Color;
 
 /**
  * This class represents the level name indicator object.
+ *
+ * @author Eden Meidan
+ * @id: 207481177
+ * @since 16/06/20
  */
 public class NameIndicator implements Sprite {
     private String levelsName;

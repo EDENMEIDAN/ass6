@@ -29,11 +29,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class that represents a gameSettings.Game.
+ * A class that represents a GameLevel.
  *
  * @author Eden Meidan
  * @id: 207481177
- * @since: 03/02/2020
+ * @since 03/02/2020
  */
 public class GameLevel implements Animation {
     private SpriteCollection sprites;
@@ -66,7 +66,6 @@ public class GameLevel implements Animation {
         this.running = true;
         this.levelInformation = level;
         this.score = score;
-        this.paddle = paddle;
     }
 
     /**
@@ -92,7 +91,7 @@ public class GameLevel implements Animation {
      * and populates the gameSettings.SpriteCollection and the gameSettings.GameEnvironment
      */
     public void initialize() {
-        System.out.println("initialize");
+        // System.out.println("initialize");
         createScore();
         createBlocks();
     }
@@ -101,7 +100,7 @@ public class GameLevel implements Animation {
      * this method created the score ScoreIndicator and adds it to the game.
      */
     private void createScore() {
-        System.out.println("createScore");
+        //System.out.println("createScore");
         // Score Indicator
         ScoreIndicator si = new ScoreIndicator(this.score);
         si.addToGame(this);
@@ -111,7 +110,7 @@ public class GameLevel implements Animation {
      * this method creates the 4 boarder blocks and the game blocks and adds them with the right logic to the game.
      */
     private void createBlocks() {
-        System.out.println("createBlocks");
+        //System.out.println("createBlocks");
         HitListener stl = new ScoreTrackingListener(this.score);
         //our block/ball removers
         BlockRemover blockRemover = new BlockRemover(this, this.blocksCounter);
@@ -148,7 +147,7 @@ public class GameLevel implements Animation {
      * this method creates the paddle and the balls to the game.
      */
     public void createBallsOnTopOfPaddle() {
-        System.out.println("createBallsOnTopOfPaddle");
+        //System.out.println("createBallsOnTopOfPaddle");
         // add paddle to the games
         /*Point upperLeft = new Point(375, 575);
         Rectangle rect = new Rectangle(upperLeft, levelInformation.paddleWidth(), Const.getPaddleHeight());
@@ -163,11 +162,7 @@ public class GameLevel implements Animation {
         this.paddle.addToGame(this);
         //add balls to the game
         int numberOfBalls = levelInformation.numberOfBalls();
-        System.out.println("numberOfBalls " + numberOfBalls);
-
         this.ballsCounter.setValue(numberOfBalls); //reset ball counter
-        //System.out.println("ballsCounter " + this.ballsCounter.setValue());
-
         for (Velocity v : levelInformation.initialBallVelocities()) {
             Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2,
                     Const.getScreenHight() - Const.getPaddleHeight() - 20), 5, Color.WHITE, v, this.environment);
@@ -204,9 +199,10 @@ public class GameLevel implements Animation {
      * this method runs the game animation in a loop.
      */
     public void run() {
-        System.out.println("gamerun");
+        //System.out.println("gamerun");
         this.createBallsOnTopOfPaddle(); // or a similar method
-        this.animationRunner.run(new CountdownAnimation(2, 3, this.sprites)); // countdown before turn starts.
+        // countdown before turn starts
+        this.animationRunner.run(new CountdownAnimation(2, 3, this.sprites));
         this.running = true;
         // use our runner to run the current animation -- which is one turn of the game.
         this.animationRunner.run(this);
@@ -218,22 +214,16 @@ public class GameLevel implements Animation {
      * @param d is the DrawSurface.
      */
     public void doOneFrame(DrawSurface d) {
-        System.out.println("doOneFrame");
+        //System.out.println("doOneFrame");
         this.sprites.drawAllOn(d);
         this.sprites.notifyAllTimePassed();
-        //System.out.println("blocksCounter" + blocksCounter.getValue());
-        //System.out.println("ballsCounter" + ballsCounter.getValue());*/
         if (this.keyboard.isPressed("p")) {
             this.animationRunner.run(new PauseScreen(this.keyboard));
         }
         if (blocksCounter.getValue() == 0 || this.ballsCounter.getValue() == 0) { //end level
-            //System.out.println("blocksCounter IF " + blocksCounter.getValue());
-            //System.out.println("ballsCounter IF " + ballsCounter.getValue());
             if (blocksCounter.getValue() == 0) {
                 this.score.increase(100);
             }
-            //System.out.println(score.getValue());
-            //this.animationRunner.getGui().close();
             this.running = false;
         }
     }

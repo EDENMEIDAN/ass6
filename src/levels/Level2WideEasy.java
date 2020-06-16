@@ -22,7 +22,7 @@ public class Level2WideEasy implements LevelInformation {
      */
     public Level2WideEasy() {
         this.background = new BackgroundLevel2();
-        this.blocks = new ArrayList<Block>();
+        this.blocks = new ArrayList<>();
         int i;
         // 2 red
         for (i = 0; i < 2; ++i) {
@@ -62,59 +62,13 @@ public class Level2WideEasy implements LevelInformation {
         // ball velocities
         /*this.initialBallVelocities = new ArrayList<Velocity>();
         this.initialBallVelocities.add(Velocity.fromAngleAndSpeed(-4, 4));*/
-        this.initialBallVelocities = new ArrayList<Velocity>();
-        for (int j = -50; j <= 50; j += 10) {
-            if (j == 0) {
+        this.initialBallVelocities = new ArrayList<>();
+        // loop for arched balls
+        for (int j = 1; j < 12; j += 1) {
+            if (j == 6) {
                 continue;
             }
-            this.initialBallVelocities.add(Velocity.fromAngleAndSpeed(j, 4));
-
-            this.initialBallVelocities.add(new Velocity(1, -2));
-            this.initialBallVelocities.add(new Velocity(-2, 1));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(-3, -2));
-            this.initialBallVelocities.add(new Velocity(5, -2));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(1, -2));
-            this.initialBallVelocities.add(new Velocity(-2, 5));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(-3, -2));
-            this.initialBallVelocities.add(new Velocity(2, -2));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(1, -2));
-            this.initialBallVelocities.add(new Velocity(-2, 1));
-            this.initialBallVelocities.add(new Velocity(-5, -2));
-            this.initialBallVelocities.add(new Velocity(-3, -2));
-            this.initialBallVelocities.add(new Velocity(2, -2));
-            this.initialBallVelocities.add(new Velocity(-2, -5));
-            this.initialBallVelocities.add(new Velocity(1, -2));
-            this.initialBallVelocities.add(new Velocity(-2, 1));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(-3, -2));
-            this.initialBallVelocities.add(new Velocity(2, -2));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(1, -2));
-            this.initialBallVelocities.add(new Velocity(-2, 1));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(-3, -2));
-            this.initialBallVelocities.add(new Velocity(2, -2));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(1, -2));
-            this.initialBallVelocities.add(new Velocity(-2, 1));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(-3, -2));
-            this.initialBallVelocities.add(new Velocity(2, -2));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(1, -2));
-            this.initialBallVelocities.add(new Velocity(-2, 1));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(-3, -2));
-            this.initialBallVelocities.add(new Velocity(2, -2));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(1, -2));
-            this.initialBallVelocities.add(new Velocity(-2, 1));
-            this.initialBallVelocities.add(new Velocity(-2, -2));
-            this.initialBallVelocities.add(new Velocity(-3, -2));
+            this.initialBallVelocities.add(Velocity.fromAngleAndSpeed(Math.toRadians(-16 * j), 4));
         }
     }
 

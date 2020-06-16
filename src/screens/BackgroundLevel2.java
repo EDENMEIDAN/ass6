@@ -9,6 +9,10 @@ import java.awt.Color;
 
 /**
  * This class represents the background for the second level.
+ *
+ * @author Eden Meidan
+ * @id: 207481177
+ * @since 16/06/20
  */
 public class BackgroundLevel2 implements Sprite {
 
@@ -21,6 +25,11 @@ public class BackgroundLevel2 implements Sprite {
                 new Color(223, 212, 224), 1);
         block.drawOn(d);
 
+        // draw lines
+        d.setColor(new Color(237, 226, 141));
+        for (int i = 0; i < 85; i++) {
+            d.drawLine(90, 140, 11 * i, 250);
+        }
         // inner circal
         d.fillCircle(widthMid, heightMid, 60);
 
@@ -31,12 +40,6 @@ public class BackgroundLevel2 implements Sprite {
         // outter circal
         d.setColor(new Color(230, 204, 120));
         d.fillCircle(widthMid, heightMid, 35);
-
-        // draw lines
-        d.setColor(new Color(237, 226, 141));
-        for (int i = 0; i < 100; i++) {
-            d.drawLine(90, 140, 11 * i, 300);
-        }
     }
 
     @Override
