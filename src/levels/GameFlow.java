@@ -2,12 +2,13 @@ package levels;
 
 import animation.AnimationRunner;
 import biuoop.KeyboardSensor;
+import screens.EndScreen;
+import screens.KeyPressStoppableAnimation;
 import settings.Counter;
+import sprites.NameIndicator;
 import sprites.ScoreIndicator;
 
 import java.util.List;
-
-//import sprites.NameIndicator;
 
 /**
  * this class manages the game flow.
@@ -16,6 +17,7 @@ public class GameFlow {
     private KeyboardSensor keyboardSensor;
     private Counter score;
     private AnimationRunner animationRunner;
+    private boolean youWin;
 
     /**
      * Instantiates a new Game flow.
@@ -27,6 +29,7 @@ public class GameFlow {
         this.animationRunner = ar;
         this.keyboardSensor = ks;
         this.score = new Counter(0);
+        this.youWin = false;
     }
 
     /**
@@ -44,8 +47,8 @@ public class GameFlow {
             ScoreIndicator scoreIndicator = new ScoreIndicator(this.score); //keep track of score between levels
             level.addSprite(scoreIndicator);
             System.out.println("runLevels after score");
-//            NameIndicator nameIndicator = new NameIndicator(levelInfo.levelName());
-//            level.addSprite(nameIndicator);
+            NameIndicator nameIndicator = new NameIndicator(levelInfo.levelName());
+            level.addSprite(nameIndicator);
             System.out.println("b4 runLevels level.run()");
             level.run();  //keep playing game
 
@@ -55,9 +58,13 @@ public class GameFlow {
             if (level.isEndGame()) {
                 System.out.println("game lost");
                 break; //player lost
+            } else {
+                this.youWin = true;
             }
         }
         System.out.println("gameflow done");
-        animationRunner.getGui().close();
+        //animationRunner.getGui().close();
+        this.animationRunner.run(new KeyPressStoppableAnimation(
+                this.keyboardSensor, "space", new EndScreen(this.score, this.youWin)));
     }
 }

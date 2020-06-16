@@ -45,6 +45,7 @@ public class GameLevel implements Animation {
     private boolean running;
     private KeyboardSensor keyboard;
     private LevelInformation levelInformation;
+    private Paddle paddle;
 
     /**
      * this method constructs new level object.
@@ -67,6 +68,7 @@ public class GameLevel implements Animation {
         this.running = true;
         this.levelInformation = level;
         this.score = score;
+        this.paddle = paddle;
     }
 
     /**
@@ -153,29 +155,20 @@ public class GameLevel implements Animation {
         Point upperLeft = new Point(375, 575);
         Rectangle rect = new Rectangle(upperLeft, levelInformation.paddleWidth(), Const.getPaddleHeight());
         Paddle ourPaddle = new Paddle(this.animationRunner.getGui(), rect);
-        ourPaddle.addToGame(this);
 
+        ourPaddle.addToGame(this);
+        //add balls to the game
         int numberOfBalls = levelInformation.numberOfBalls();
         System.out.println("numberOfBalls " + numberOfBalls);
 
         this.ballsCounter.setValue(numberOfBalls); //reset ball counter
-
-        //System.out.println("ballsCounter " + this.ballsCounter.setValue(););
+        //System.out.println("ballsCounter " + this.ballsCounter.setValue());
 
         for (Velocity v : levelInformation.initialBallVelocities()) {
-            System.out.println("in forv");
             Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2, Const.getScreenHight() / 2 + 100), 5,
                     Color.WHITE, v, this.environment);
             this.addSprite(newBall);
-            System.out.println("newBall " + newBall);
         }
-        System.out.println("out forv");
-       /* for (int ballIndex = 0; ballIndex < numberOfBalls; ballIndex++) {
-            Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2, Const.getScreenHight() / 2 + 100), 5,
-                    Color.WHITE, levelInformation.initialBallVelocities().get(ballIndex), this.environment);
-            //newBall.setEnvironment(this.environment);
-            this.addSprite(newBall);
-        }*/
     }
 
     /**

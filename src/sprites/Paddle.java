@@ -40,7 +40,6 @@ public class Paddle implements Sprite, Collidable {
         this.keyboard = gui.getKeyboardSensor();
     }
 
-
     /**
      * this method moves the paddle to the left.
      */
