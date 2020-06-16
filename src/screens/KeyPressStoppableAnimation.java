@@ -12,7 +12,7 @@ public class KeyPressStoppableAnimation implements Animation {
     private String key;
     private Animation animation;
     private boolean closeScreen;
-    private boolean beingPressed;
+    private boolean isAlreadyPressed;
 
     /**
      * constroctor of the KeyPressStoppableAnimation object.
@@ -26,7 +26,7 @@ public class KeyPressStoppableAnimation implements Animation {
         this.key = key;
         this.animation = animation;
         this.closeScreen = false;
-        this.beingPressed = true;
+        this.isAlreadyPressed = true;
     }
 
     /**
@@ -38,13 +38,13 @@ public class KeyPressStoppableAnimation implements Animation {
     public void doOneFrame(DrawSurface d) {
         this.animation.doOneFrame(d);
         //already paused
-        if (this.keyboardSensor.isPressed(this.key) && !this.beingPressed) {
-            this.beingPressed = true;
+        if (this.keyboardSensor.isPressed(this.key) && !this.isAlreadyPressed) {
+            this.isAlreadyPressed = true;
             this.closeScreen = true;
         }
         //now pause
         if (!this.keyboardSensor.isPressed(this.key)) {
-            this.beingPressed = false;
+            this.isAlreadyPressed = false;
         }
     }
 

@@ -38,7 +38,7 @@ public class EndScreenWin implements Animation {
         d.setColor(Color.BLACK);
 
         d.drawText(210, 200, "You Win!", 100);
-        d.setColor(Color.decode("#ffcb05"));
+        d.setColor(Color.WHITE);
         //d.drawText(214, 196, "You Won", 100);
 
         d.setColor(Color.BLACK);

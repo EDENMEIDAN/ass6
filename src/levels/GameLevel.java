@@ -157,7 +157,7 @@ public class GameLevel implements Animation {
         this.paddle = new Paddle(new Rectangle(new Point(
                 Const.getScreenWidth() / 2 - levelInformation.paddleWidth() / 2, Const.getScreenHight() - 35),
                 levelInformation.paddleWidth(), 15), this.keyboard);
-        //this.levelInformation.paddleSpeed();
+        this.levelInformation.paddleSpeed();
 
 
         this.paddle.addToGame(this);

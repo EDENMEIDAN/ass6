@@ -68,6 +68,53 @@ public class Level2WideEasy implements LevelInformation {
                 continue;
             }
             this.initialBallVelocities.add(Velocity.fromAngleAndSpeed(j, 4));
+
+            this.initialBallVelocities.add(new Velocity(1, -2));
+            this.initialBallVelocities.add(new Velocity(-2, 1));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(-3, -2));
+            this.initialBallVelocities.add(new Velocity(5, -2));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(1, -2));
+            this.initialBallVelocities.add(new Velocity(-2, 5));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(-3, -2));
+            this.initialBallVelocities.add(new Velocity(2, -2));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(1, -2));
+            this.initialBallVelocities.add(new Velocity(-2, 1));
+            this.initialBallVelocities.add(new Velocity(-5, -2));
+            this.initialBallVelocities.add(new Velocity(-3, -2));
+            this.initialBallVelocities.add(new Velocity(2, -2));
+            this.initialBallVelocities.add(new Velocity(-2, -5));
+            this.initialBallVelocities.add(new Velocity(1, -2));
+            this.initialBallVelocities.add(new Velocity(-2, 1));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(-3, -2));
+            this.initialBallVelocities.add(new Velocity(2, -2));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(1, -2));
+            this.initialBallVelocities.add(new Velocity(-2, 1));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(-3, -2));
+            this.initialBallVelocities.add(new Velocity(2, -2));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(1, -2));
+            this.initialBallVelocities.add(new Velocity(-2, 1));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(-3, -2));
+            this.initialBallVelocities.add(new Velocity(2, -2));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(1, -2));
+            this.initialBallVelocities.add(new Velocity(-2, 1));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(-3, -2));
+            this.initialBallVelocities.add(new Velocity(2, -2));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(1, -2));
+            this.initialBallVelocities.add(new Velocity(-2, 1));
+            this.initialBallVelocities.add(new Velocity(-2, -2));
+            this.initialBallVelocities.add(new Velocity(-3, -2));
         }
     }
 
