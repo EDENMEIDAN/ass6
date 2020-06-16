@@ -7,6 +7,8 @@ import sprites.ScoreIndicator;
 
 import java.util.List;
 
+//import sprites.NameIndicator;
+
 /**
  * this class manages the game flow.
  */
@@ -18,8 +20,8 @@ public class GameFlow {
     /**
      * Instantiates a new Game flow.
      *
-     * @param ar the animationRunner
-     * @param ks the KeyboardSensor
+     * @param ar the animationRunner.
+     * @param ks the KeyboardSensor.
      */
     public GameFlow(AnimationRunner ar, KeyboardSensor ks) {
         this.animationRunner = ar;
@@ -37,20 +39,26 @@ public class GameFlow {
         System.out.println("size:" + levels.size());
         for (LevelInformation levelInfo : levels) {
             System.out.println("runLevels in for");
-            GameLevel level = new GameLevel(levelInfo, this.keyboardSensor, this.animationRunner);
+            GameLevel level = new GameLevel(levelInfo, this.keyboardSensor, this.animationRunner, this.score);
             level.initialize();
-            ScoreIndicator si = new ScoreIndicator(this.score); //keep track of score between levels
-            level.addSprite(si);
+            ScoreIndicator scoreIndicator = new ScoreIndicator(this.score); //keep track of score between levels
+            level.addSprite(scoreIndicator);
+            System.out.println("runLevels after score");
+//            NameIndicator nameIndicator = new NameIndicator(levelInfo.levelName());
+//            level.addSprite(nameIndicator);
             //keep playing game
+            //while (!level.shouldStop()) {
+            System.out.println("in runLevels while");
             level.run();
-            //go to next level
 
+            //go to next level
             System.out.println("b4 runlevel if");
             //stop game = game over
-            if (levelInfo.numberOfBalls() == 0) {
+            if (level.finishGame()) {
                 break;
             }
             System.out.println("after runlevel if");
         }
+        animationRunner.getGui().close();
     }
 }

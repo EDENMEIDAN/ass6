@@ -3,7 +3,7 @@ package interfaces;
 import biuoop.DrawSurface;
 
 /**
- * A interface of interfaces.Sprite that can drawn on the screen, and can be notified that time has passed.
+ * A interface of Sprites that can drawn on the screen, and can be notified that time has passed.
  *
  * @author Eden Meidan
  * @id: 207481177

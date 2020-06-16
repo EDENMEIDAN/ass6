@@ -291,6 +291,7 @@ public class Ball implements Sprite {
      * this method notifies the ball that a time unit has passed.
      */
     public void timePassed() {
+
         this.moveOneStep();
     }
 

@@ -25,25 +25,31 @@ public class Ass6Game {
      * @param args this array stores the user's input. at the moment is empty.
      */
     public static void main(String[] args) {
+        System.out.println(111);
         GUI gui = new GUI("Arkanoid", Const.getScreenWidth(), Const.getScreenHight());
-        AnimationRunner runner = new AnimationRunner(gui);
+        System.out.println(222);
+        AnimationRunner runner = new AnimationRunner(gui, 60);
+        System.out.println(333);
         //LevelInformation level = new Level1DirectHit();
         List<LevelInformation> levels = new ArrayList<LevelInformation>();
-
+        System.out.println(444);
         LevelInformation level1 = new Level1DirectHit();
         levels.add(level1);
+        System.out.println(555);
         LevelInformation level2 = new Level2WideEasy();
         levels.add(level2);
+        System.out.println(666);
         LevelInformation level3 = new Level3Green3();
         levels.add(level3);
+        System.out.println(777);
         LevelInformation level4 = new Level4FinalFour();
         levels.add(level4);
-
+        System.out.println(888);
         GameFlow gameFlow = new GameFlow(runner, gui.getKeyboardSensor());
-        gameFlow.runLevels(levels);
+        System.out.println(999);
+        gameFlow.runLevels(levels); //!!!!!
+        System.out.println(1000);
         //GameLevel game = new GameLevel(level);
-
-//        for loop to create levels?
 //        GameFlow game = new GameFlow(ar, gui.getKeyboardSensor(), 7, 800, 600);
 //        game.runLevels(levels);
 //        gui.close();

@@ -11,14 +11,15 @@ import java.awt.Color;
 public class CountdownAnimation implements Animation {
     private boolean running;
     private long numOfMillis;
+    private long initiationTime;
     private int countFrom;
     private int initialCount;
     private SpriteCollection gameScreen;
-    private long initiationTime;
+
 
     /**
-     * construct a count down animation object from the time of annicalizing the the animation run,
-     * number to count down from, and the game's sprite.
+     * construct a count down animation object from the time of annicalize the the animation run,
+     * number to count down from, and the game's sprite screen.
      *
      * @param numOfSeconds time of displaying the count down animation.
      * @param countFrom the number to count down from.
@@ -51,18 +52,20 @@ public class CountdownAnimation implements Animation {
      * @param d the DrawSurface to draw on.
      */
     public void doOneFrame(DrawSurface d) {
+        System.out.println("CountdownAnimation doOneFrame");
         if (this.countFrom == 0) {
             this.running = false;
         }
         this.setBackground(d, Color.black);
-        this.gameScreen.drawAllOn(d);
+        System.out.println("CountdownAnimation doOneFrame after setBackground");
+        this.gameScreen.drawAllOn(d); //!!!!!!!!!!!!!!!
+        System.out.println("CountdownAnimation doOneFrame after game screen");
         d.setColor(Color.decode("#fec04c"));
-        d.drawText(385, 450, Integer.toString(this.countFrom), 65); //todo
+        d.drawText(385, 450, Integer.toString(this.countFrom), 65);
         if (System.currentTimeMillis() - this.initiationTime > this.numOfMillis / this.initialCount) {
             this.initiationTime = System.currentTimeMillis();
             this.countFrom--;
         }
-        return;
     }
 
     /**

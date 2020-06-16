@@ -51,19 +51,21 @@ public class GameLevel implements Animation {
      * @param level object for the current level.
      * @param keyboard the KeyboardSensor.
      * @param animationRunner he animationRunner.
+     * @param score the game score.
      */
-    public GameLevel(LevelInformation level, KeyboardSensor keyboard, AnimationRunner animationRunner) {
-        // Counter score, int horizontalBound, int verticalBound
+    public GameLevel(LevelInformation level, KeyboardSensor keyboard, AnimationRunner animationRunner, Counter score) {
         this.environment = new GameEnvironment();
         this.sprites = new SpriteCollection();
         this.sprites.addSprite(level.getBackground()); //added
-        this.score = new Counter(0);
-        this.blocksCounter = new Counter(level.numberOfBlocksToRemove());
-        this.ballsCounter = new Counter(level.numberOfBalls());
+//        this.blocksCounter = new Counter(level.numberOfBlocksToRemove());
+//        this.ballsCounter = new Counter(level.numberOfBalls());
+        this.blocksCounter = new Counter(0);
+        this.ballsCounter = new Counter(0);
         this.animationRunner = animationRunner;
         this.keyboard = keyboard;
         this.running = true;
         this.levelInformation = level;
+        this.score = score;
     }
 
     /**
@@ -136,7 +138,7 @@ public class GameLevel implements Animation {
             block.addToGame(this);
             block.addHitListener(stl);
             block.addHitListener(blockRemover);
-            this.blocksCounter.increase(1);
+            this.blocksCounter.increase(1); //reset
         }
         blockRemover.setRemainingBlockCounter(this.blocksCounter);
     }
@@ -151,9 +153,10 @@ public class GameLevel implements Animation {
         Rectangle rect = new Rectangle(upperLeft, levelInformation.paddleWidth(), Const.getPaddleHeight());
         Paddle ourPaddle = new Paddle(this.animationRunner.getGui(), rect);
         ourPaddle.addToGame(this);
-
         int ballIndex = 0;
         int numberOfBalls = levelInformation.numberOfBalls();
+        this.ballsCounter.setValue(numberOfBalls); //reset ball counter
+
         for (ballIndex = 0; ballIndex < numberOfBalls; ++ballIndex) {
             Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2, Const.getScreenHight() / 2 + 100), 5,
                     Color.WHITE, levelInformation.initialBallVelocities().get(ballIndex));
@@ -204,7 +207,6 @@ public class GameLevel implements Animation {
      *
      * @param d is the DrawSurface.
      */
-    @Override
     public void doOneFrame(DrawSurface d) {
         System.out.println("doOneFrame");
         this.sprites.drawAllOn(d);
@@ -222,19 +224,13 @@ public class GameLevel implements Animation {
             gui.show(d);
             this.sprites.notifyAllTimePassed();
 
-            // timing
-            long usedTime = (System.currentTimeMillis() - startTime);
-            long milliSecondLeftToSleep = (millisecondsPerFrame - usedTime);
-            if (milliSecondLeftToSleep > 0) { // there is more time left
-            sleeper.sleepFor(milliSecondLeftToSleep);
-            }
             //System.out.println("blocksCounter" + blocksCounter.getValue());
             //System.out.println("ballsCounter" + ballsCounter.getValue());*/
         if (this.keyboard.isPressed("p")) {
             this.animationRunner.run(new PauseScreen(this.keyboard));
         }
         if (blocksCounter.getValue() == 0 || this.ballsCounter.getValue() == 0) { //end level
-            System.out.println("blocksCounter IF " + blocksCounter.getValue());
+            //System.out.println("blocksCounter IF " + blocksCounter.getValue());
             //System.out.println("ballsCounter IF " + ballsCounter.getValue());
             if (blocksCounter.getValue() == 0) {
                 this.score.increase(100);
@@ -253,5 +249,14 @@ public class GameLevel implements Animation {
     @Override
     public boolean shouldStop() {
         return !this.running;
+    }
+
+    /**
+     * this method checks if game should be ended.
+     *
+     * @return true if should end, otherwise-- false.
+     */
+    public boolean finishGame() {
+        return (this.ballsCounter.getValue() == 0);
     }
 }

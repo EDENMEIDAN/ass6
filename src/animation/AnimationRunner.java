@@ -20,20 +20,13 @@ public class AnimationRunner {
     /**
      * construct an animation runner from a given gui object.
      *
-     * @param gui
+     * @param gui the game gui.
+     * @param millisecondsPerFrame num of frames per second.
      */
-    public AnimationRunner(GUI gui) {
-        this.millisecondsPerFrame = 60;
-        this.gui = new GUI("Arkanoid", 800, 600);
+    public AnimationRunner(GUI gui, int millisecondsPerFrame) {
+        this.millisecondsPerFrame = millisecondsPerFrame;
+        this.gui = gui;
         this.sleeper = new Sleeper();
-        //this.dt = 1 / (double) millisecondsPerFrame;
-    }
-
-    public AnimationRunner() {
-        this.millisecondsPerFrame = 60;
-        this.gui = new GUI("Arkanoid", 800, 600);
-        this.sleeper = new Sleeper();
-        //this.dt = 1 / (double) millisecondsPerFrame;
     }
 
     /**
@@ -51,18 +44,21 @@ public class AnimationRunner {
     public void run(Animation animation) {
         System.out.println("animationRunner run");
         System.out.println(animation.shouldStop()); //should be false?//todo
-        int newMillisecondsPerFrame = 1000 / this.millisecondsPerFrame;
+        long newMillisecondsPerFrame = 1000 / this.millisecondsPerFrame;
 
         while (!animation.shouldStop()) {
-            System.out.println(999);
-            long startTime = System.currentTimeMillis(); // timing
-            DrawSurface d = gui.getDrawSurface();
-            animation.doOneFrame(d);
+            System.out.println("animationRunner in shouldStop while");
+            DrawSurface d = this.gui.getDrawSurface();
+            System.out.println("animationRunner run before doOneFrame");
+            animation.doOneFrame(d); //!!!!!!!!!!!!
+            System.out.println("animationRunner run after doOneFrame");
             this.gui.show(d);
+
+            long startTime = System.currentTimeMillis(); // timing
             long usedTime = System.currentTimeMillis() - startTime;
-            long milliSecondLeftToSleep = newMillisecondsPerFrame - usedTime;
+            long milliSecondLeftToSleep = millisecondsPerFrame - usedTime;
             if (milliSecondLeftToSleep > 0) {
-                this.sleeper.sleepFor(milliSecondLeftToSleep);
+                sleeper.sleepFor(milliSecondLeftToSleep);
             }
         }
     }
