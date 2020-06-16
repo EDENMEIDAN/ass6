@@ -56,7 +56,7 @@ public class Ball implements Sprite {
         this.r = r;
         this.color = color;
         this.v = v;
-        this.gameEnvironment = new GameEnvironment();
+        this.gameEnvironment = gameEnvironment;
     }
 
     /**

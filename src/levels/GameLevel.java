@@ -153,14 +153,17 @@ public class GameLevel implements Animation {
         Rectangle rect = new Rectangle(upperLeft, levelInformation.paddleWidth(), Const.getPaddleHeight());
         Paddle ourPaddle = new Paddle(this.animationRunner.getGui(), rect);
         ourPaddle.addToGame(this);
-        int ballIndex = 0;
-        int numberOfBalls = levelInformation.numberOfBalls();
-        this.ballsCounter.setValue(numberOfBalls); //reset ball counter
 
-        for (ballIndex = 0; ballIndex < numberOfBalls; ++ballIndex) {
+        int numberOfBalls = levelInformation.numberOfBalls();
+        System.out.println("numberOfBalls " + numberOfBalls);
+
+        this.ballsCounter.setValue(numberOfBalls); //reset ball counter
+        //System.out.println("ballsCounter " + this.ballsCounter.setValue(););
+
+        for (int ballIndex = 0; ballIndex < numberOfBalls; ballIndex++) {
             Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2, Const.getScreenHight() / 2 + 100), 5,
-                    Color.WHITE, levelInformation.initialBallVelocities().get(ballIndex));
-            newBall.setEnvironment(this.environment);
+                    Color.WHITE, levelInformation.initialBallVelocities().get(ballIndex), this.environment);
+            //newBall.setEnvironment(this.environment);
             this.addSprite(newBall);
         }
     }
@@ -211,19 +214,6 @@ public class GameLevel implements Animation {
         System.out.println("doOneFrame");
         this.sprites.drawAllOn(d);
         this.sprites.notifyAllTimePassed();
-      /*  int framesPerSecond = 60;
-        int millisecondsPerFrame = 1000 / framesPerSecond;
-        Sleeper sleeper = new Sleeper();
-        while (!this.shouldStop()) { //// shouldStop() is in charge of stopping condition.
-            long startTime = System.currentTimeMillis(); // currentTimeMillis
-            d = this.gui.getDrawSurface();
-            this.setBackground(d, Color.GREEN);
-            this.sprites.drawAllOn(d);
-
-            this.doOneFrame(d); // doOneFrame(DrawSurface) is in charge of the logic.
-            gui.show(d);
-            this.sprites.notifyAllTimePassed();
-
             //System.out.println("blocksCounter" + blocksCounter.getValue());
             //System.out.println("ballsCounter" + ballsCounter.getValue());*/
         if (this.keyboard.isPressed("p")) {
@@ -256,7 +246,7 @@ public class GameLevel implements Animation {
      *
      * @return true if should end, otherwise-- false.
      */
-    public boolean finishGame() {
+    public boolean isEndGame() {
         return (this.ballsCounter.getValue() == 0);
     }
 }

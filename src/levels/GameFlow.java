@@ -46,19 +46,18 @@ public class GameFlow {
             System.out.println("runLevels after score");
 //            NameIndicator nameIndicator = new NameIndicator(levelInfo.levelName());
 //            level.addSprite(nameIndicator);
-            //keep playing game
-            //while (!level.shouldStop()) {
-            System.out.println("in runLevels while");
-            level.run();
+            System.out.println("b4 runLevels level.run()");
+            level.run();  //keep playing game
 
             //go to next level
-            System.out.println("b4 runlevel if");
+            System.out.println("after runlevel level.run()");
             //stop game = game over
-            if (level.finishGame()) {
-                break;
+            if (level.isEndGame()) {
+                System.out.println("game lost");
+                break; //player lost
             }
-            System.out.println("after runlevel if");
         }
+        System.out.println("gameflow done");
         animationRunner.getGui().close();
     }
 }
