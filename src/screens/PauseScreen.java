@@ -33,16 +33,23 @@ public class PauseScreen implements Animation {
      * @param d the DrawSurface to draw on.
      */
     public void doOneFrame(DrawSurface d) {
-        d.drawText(10, d.getHeight() / 2, "paused -- press space to continue", 32);
+        d.drawText(10, d.getHeight() / 2, "paused -- press space to continue", 30);
         d.setColor(Color.WHITE);
         d.fillRectangle(0, 0, d.getWidth(), d.getHeight());
-        d.setColor(Color.decode("#1e7f00"));
+
+        d.setColor(Color.darkGray);
         d.fillRectangle(0, d.getHeight() / 2 - 160, d.getWidth(), 150);
-        d.setColor(Color.GREEN);
+
+        d.setColor(Color.lightGray);
         d.fillRectangle(0, d.getHeight() / 2 - 160, d.getWidth(), 3);
-        d.drawText(290, d.getHeight() / 2 - 100, "Paused", 70);
+
+        d.setColor(Color.white);
+        d.drawText(290, d.getHeight() / 2 - 90, "Paused", 65);
+
+        d.setColor(Color.lightGray);
         d.drawText(270, d.getHeight() / 2 - 30, "press space to continue", 25);
         d.fillRectangle(0, d.getHeight() / 2 - 10, d.getWidth(), 3);
+
         if (this.keyboard.isPressed(KeyboardSensor.SPACE_KEY)) {
             this.stop = true;
         }
