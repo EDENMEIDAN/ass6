@@ -94,7 +94,7 @@ public class Level4FinalFour implements LevelInformation {
      */
     @Override
     public int paddleWidth() {
-        return 80;
+        return 590;
     }
 
     /**

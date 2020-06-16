@@ -30,7 +30,7 @@ public class PauseScreen implements Animation {
      */
     public void doOneFrame(DrawSurface d) {
         d.drawText(10, d.getHeight() / 2, "paused -- press space to continue", 32);
-        d.setColor(Color.BLACK);
+        d.setColor(Color.WHITE);
         d.fillRectangle(0, 0, d.getWidth(), d.getHeight());
         d.setColor(Color.decode("#1e7f00"));
         d.fillRectangle(0, d.getHeight() / 2 - 160, d.getWidth(), 150);

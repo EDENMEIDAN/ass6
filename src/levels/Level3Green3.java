@@ -141,7 +141,7 @@ public class Level3Green3 implements LevelInformation {
      */
     @Override
     public int paddleWidth() {
-        return 75;
+        return 590;
     }
 
     /**

@@ -6,10 +6,11 @@ import settings.Counter;
 
 import java.awt.Color;
 
+
 /**
- * This class represents the end screen object that will be displayed in the end of the game.
+ * This class represents the end screen object that will be displayed in the end of the game when player won.
  */
-public class EndScreen implements Animation {
+public class EndScreenWin implements Animation {
     private int score;
     private boolean youWin;
 
@@ -19,10 +20,11 @@ public class EndScreen implements Animation {
      * @param score the score counter.
      * @param youWin boolean indicator for wining.
      */
-    public EndScreen(Counter score, boolean youWin) {
+    public EndScreenWin(Counter score, boolean youWin) {
         this.score = score.getValue();
         this.youWin = youWin;
     }
+
 
     /**
      * this method is the frame-management code.
@@ -31,20 +33,14 @@ public class EndScreen implements Animation {
      */
     @Override
     public void doOneFrame(DrawSurface d) {
-        d.setColor(Color.decode("#990000"));
+        d.setColor(Color.GREEN.darker());
         d.fillRectangle(0, 0, d.getWidth(), d.getHeight());
         d.setColor(Color.BLACK);
-        // wiining screen
-        if (this.youWin) {
-            d.drawText(210, 200, "You Win!", 100);
-            d.setColor(Color.decode("#ffcb05"));
-            //d.drawText(214, 196, "You Won", 100);
-        } else {
-            // losing screen
-            d.drawText(210, 200, "Game Over. ", 100);
-            d.setColor(Color.decode("#ffcb05"));
-            //d.drawText(214, 196, "You Lost", 100);
-        }
+
+        d.drawText(210, 200, "You Win!", 100);
+        d.setColor(Color.decode("#ffcb05"));
+        //d.drawText(214, 196, "You Won", 100);
+
         d.setColor(Color.BLACK);
         d.drawText(250, 350, "Press space to continue", 25);
         d.setColor(Color.WHITE);

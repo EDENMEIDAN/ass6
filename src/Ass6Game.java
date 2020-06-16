@@ -49,13 +49,9 @@ public class Ass6Game {
         System.out.println(888);
         GameFlow gameFlow = new GameFlow(runner, gui.getKeyboardSensor());
         System.out.println(999);
-        gameFlow.runLevels(levels); //!!!!!
+        gameFlow.runLevels(levels);
         System.out.println(1000);
-        //GameLevel game = new GameLevel(level);
-//        GameFlow game = new GameFlow(ar, gui.getKeyboardSensor(), 7, 800, 600);
-//        game.runLevels(levels);
-//        gui.close();
-        //game.initialize();
-        //game.run();
+
+        runner.getGui().close();
     }
 }

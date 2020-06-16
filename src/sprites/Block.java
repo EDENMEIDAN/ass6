@@ -77,7 +77,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
      * @param color the color that fills the block.
      * @param hitListeners the list of hitlisters.
      */
-    public Block(Point upperLeft, double width, double height, Color color, HitListener hitListeners) { //todo
+    public Block(Point upperLeft, double width, double height, Color color, HitListener hitListeners) {
         this.rect = new Rectangle(upperLeft, width, height);
         this.color = color;
         this.hitListeners = new ArrayList<>();

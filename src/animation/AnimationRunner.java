@@ -43,7 +43,7 @@ public class AnimationRunner {
      */
     public void run(Animation animation) {
         System.out.println("animationRunner run");
-        System.out.println(animation.shouldStop()); //should be false?//todo
+        System.out.println(animation.shouldStop()); //should be false
         long newMillisecondsPerFrame = 1000 / this.millisecondsPerFrame;
 
         while (!animation.shouldStop()) {

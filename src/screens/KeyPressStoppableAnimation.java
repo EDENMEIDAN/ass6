@@ -39,6 +39,7 @@ public class KeyPressStoppableAnimation implements Animation {
         this.animation.doOneFrame(d);
         //already paused
         if (this.keyboardSensor.isPressed(this.key) && !this.beingPressed) {
+            this.beingPressed = true;
             this.closeScreen = true;
         }
         //now pause

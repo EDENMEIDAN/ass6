@@ -2,7 +2,8 @@ package levels;
 
 import animation.AnimationRunner;
 import biuoop.KeyboardSensor;
-import screens.EndScreen;
+import screens.EndScreenLose;
+import screens.EndScreenWin;
 import screens.KeyPressStoppableAnimation;
 import settings.Counter;
 import sprites.NameIndicator;
@@ -29,7 +30,7 @@ public class GameFlow {
         this.animationRunner = ar;
         this.keyboardSensor = ks;
         this.score = new Counter(0);
-        this.youWin = false;
+        this.youWin = true;
     }
 
     /**
@@ -57,14 +58,17 @@ public class GameFlow {
             //stop game = game over
             if (level.isEndGame()) {
                 System.out.println("game lost");
-                break; //player lost
-            } else {
-                this.youWin = true;
+                this.youWin = false;
+                this.animationRunner.run(new KeyPressStoppableAnimation(
+                        this.keyboardSensor, keyboardSensor.SPACE_KEY, new EndScreenLose(this.score)));
+                break;
             }
         }
         System.out.println("gameflow done");
+        if (youWin) {
+            this.animationRunner.run(new KeyPressStoppableAnimation(
+                    this.keyboardSensor, keyboardSensor.SPACE_KEY, new EndScreenWin(this.score, this.youWin)));
+        }
         //animationRunner.getGui().close();
-        this.animationRunner.run(new KeyPressStoppableAnimation(
-                this.keyboardSensor, "space", new EndScreen(this.score, this.youWin)));
     }
 }

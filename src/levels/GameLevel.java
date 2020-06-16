@@ -59,8 +59,6 @@ public class GameLevel implements Animation {
         this.environment = new GameEnvironment();
         this.sprites = new SpriteCollection();
         this.sprites.addSprite(level.getBackground()); //added
-//        this.blocksCounter = new Counter(level.numberOfBlocksToRemove());
-//        this.ballsCounter = new Counter(level.numberOfBalls());
         this.blocksCounter = new Counter(0);
         this.ballsCounter = new Counter(0);
         this.animationRunner = animationRunner;
@@ -152,11 +150,17 @@ public class GameLevel implements Animation {
     public void createBallsOnTopOfPaddle() {
         System.out.println("createBallsOnTopOfPaddle");
         // add paddle to the games
-        Point upperLeft = new Point(375, 575);
+        /*Point upperLeft = new Point(375, 575);
         Rectangle rect = new Rectangle(upperLeft, levelInformation.paddleWidth(), Const.getPaddleHeight());
-        Paddle ourPaddle = new Paddle(this.animationRunner.getGui(), rect);
+        Paddle ourPaddle = new Paddle(this.animationRunner.getGui(), rect);*/
 
-        ourPaddle.addToGame(this);
+        this.paddle = new Paddle(new Rectangle(new Point(
+                Const.getScreenWidth() / 2 - levelInformation.paddleWidth() / 2, Const.getScreenHight() - 35),
+                levelInformation.paddleWidth(), 15), this.keyboard);
+        //this.levelInformation.paddleSpeed();
+
+
+        this.paddle.addToGame(this);
         //add balls to the game
         int numberOfBalls = levelInformation.numberOfBalls();
         System.out.println("numberOfBalls " + numberOfBalls);
@@ -165,8 +169,8 @@ public class GameLevel implements Animation {
         //System.out.println("ballsCounter " + this.ballsCounter.setValue());
 
         for (Velocity v : levelInformation.initialBallVelocities()) {
-            Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2, Const.getScreenHight() / 2 + 100), 5,
-                    Color.WHITE, v, this.environment);
+            Ball newBall = new Ball(new Point(Const.getScreenWidth() / 2,
+                    Const.getScreenHight() - Const.getPaddleHeight() - 20), 5, Color.WHITE, v, this.environment);
             this.addSprite(newBall);
         }
     }
